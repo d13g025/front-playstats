@@ -2,28 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import styles from './formCadastro.style';
 
-const FormCadastro = () => {
+const FormCadastro: React.FC<{ navigation: any }> = ({ navigation }) => {
     const [nomeTime, setNomeTime] = useState('');
     const [endereco, setEndereco] = useState('');
     const [email, setEmail] = useState('');
     const [confirmaEmail, setConfirmaEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const handleSignIn = () => {
-        if (nomeTime === '' || endereco === '' || email === '' || confirmaEmail === '' || password === '') {
-            alert("Favor, preencher todos os campos");
-            return;
-        }
-        if (email !== confirmaEmail) {
-            alert("Os Emails estão diferentes");
-            return;
-        }
-
-        const data = {
-            nomeTime, endereco, email, confirmaEmail, password
-        };
-        console.log(data);
-    };
 
     return (
         <KeyboardAvoidingView 
@@ -65,13 +49,15 @@ const FormCadastro = () => {
                 value={password}
                 placeholder="Sua Senha"
             />
-            <TouchableOpacity style={styles.button} onPress={handleSignIn}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('menuOpcoes')}>
                 <Text style={styles.buttonText}>Salvar</Text>
             </TouchableOpacity>
-            <Image
-                source={require('../assets/logo.png')}
-                style={styles.logo}
-            />
+            <TouchableOpacity onPress={()=> navigation.goBack('Portifolio')}>
+                <Image
+                    source={require('../assets/logo.png')}
+                    style={styles.logo}
+                />
+            </TouchableOpacity>
         </KeyboardAvoidingView>
     );
 };

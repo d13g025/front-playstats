@@ -1,11 +1,16 @@
 import  {View} from 'react-native';
 import FormCadastro from '../components/formCadastro/index';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 
-const CadastrarTimeP =() => {
+interface HomeProps {
+    navigation: NativeStackNavigationProp<any>;
+  }
+  
+  const CadastrarTimeP: React.FC<HomeProps> = ({ navigation }) => {
   return (
     <View  style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor:'black'}}>
-      <FormCadastro/>
+      <FormCadastro navigation ={navigation}/>
     </View>
   );
 }

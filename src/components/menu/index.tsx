@@ -1,14 +1,8 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import styles from './menu.style'
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import styles from './menu.style';
 
 const Menu: React.FC<{ navigation: any }> = ({ navigation }) => {
-  
-  const handlePress = (item: string) => {
-    // Adicione lógica aqui para o que deve acontecer ao pressionar um item
-    console.log(`${item} pressionado`);
-  };
-
   return (
     <View style={styles.container}>
       <Image

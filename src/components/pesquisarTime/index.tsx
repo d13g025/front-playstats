@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {View, TextInput, Image, Text,TouchableOpacity} from 'react-native';
 import styles from './pesquisarTime.style'
 
-const PesquisarTime =() =>{
+const PesquisarTime: React.FC<{ navigation: any }> = ({ navigation }) => {
 
     const [time, setTime] = useState('')
 
@@ -20,9 +20,11 @@ const PesquisarTime =() =>{
             <TouchableOpacity style={styles.button} onPress={handleSignIn}>
                 <Text style={styles.buttonText}>Procurar</Text>
             </TouchableOpacity>
-            <Text style={styles.title}>
-                Times
-            </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('dadosTimeUser')}>
+                <Text style={styles.title}>
+                    Times
+                </Text>
+            </TouchableOpacity>
         </View>
     )
 }

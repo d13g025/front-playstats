@@ -1,18 +1,18 @@
 import React from 'react';
 import { View } from 'react-native';
-import FormLogin from '../components/formLogin/index';
+import MenuOpcoes from '../components/menuOpcoes/index';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-interface LoginProps {
+interface OpcoesProps {
   navigation: NativeStackNavigationProp<any>;
 }
 
-const Login: React.FC<LoginProps> = ({ navigation }) => {
+const Opcoes: React.FC<OpcoesProps> = ({ navigation }) => {
   return (
     <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor: 'black' }}>
-      <FormLogin navigation={navigation} />
+      <MenuOpcoes navigation={navigation} />
     </View>
   );
 };
 
-export default Login;
+export default Opcoes;

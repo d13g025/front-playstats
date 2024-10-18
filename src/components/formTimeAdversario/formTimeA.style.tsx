@@ -4,7 +4,8 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         width: 500,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#333533'
     },
     input: {
 
@@ -27,24 +28,25 @@ const styles = StyleSheet.create({
         width: '35%', // largura da imagem
         height: 150, // altura da imagem
         marginHorizontal: 5, // Adiciona espaçamento horizontal entre os itens
-        
+        resizeMode: 'cover',
         alignSelf:'center',
-        marginTop:35,
-        position: 'absolute' // Para deixar a logo a cima de tudo
+        marginTop:35
     },
     title:{
         
         alignSelf:'center',
-        fontSize:40,
+        fontSize:32,
         fontWeight: 'normal',
-        color:'white'
+        color:'white',
+        marginTop: 20
         
     },
     button:{
         backgroundColor: 'green',
         borderRadius:20,
         width: 280,
-        height: 40
+        height: 40,
+        marginTop: 10
     },
     buttonText:{
         color:'white',
@@ -58,6 +60,5 @@ const styles = StyleSheet.create({
         marginTop:60,
         resizeMode: 'cover',
     }
-});
-
+})
 export default styles;
