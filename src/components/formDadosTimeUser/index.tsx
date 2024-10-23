@@ -8,13 +8,13 @@ const FormDadosTimeUser: React.FC<{ navigation: any }> = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('listaArtilhariaUser')}>
         <Text style={styles.itemText}>Lista de Artilharia e assistencias</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} >
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('listaJogosUser')}>
         <Text style={styles.itemText}>Lista de jogos</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} >
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('estatisticasJogadoresUser')}>
         <Text style={styles.itemText}>Estatisticas dos jogadores</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} >
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('estatisticasJogosUser')}>
         <Text style={styles.itemText}>Estatisticas dos jogos</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>

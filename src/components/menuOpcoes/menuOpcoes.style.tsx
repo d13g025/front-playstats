@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
         fontSize: 18,
-        marginTop: 17
+        marginTop: 15
     },
     logo:{
         width: 190, // largura da imagem

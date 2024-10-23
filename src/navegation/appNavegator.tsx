@@ -15,8 +15,14 @@ import CadastroJogo from '../pages/cadastroJogo';
 import DadosTime from '../pages/dadosTime';
 import DadosTimeUser from '../pages/dadosTimeUser';
 import ArtilhariaUser from '../pages/artilhariaUser';
-import { NavigationContainer } from '@react-navigation/native';
-
+import JogosUser from '../pages/jogosUser';
+import EstatisticaJogosUser from '../pages/estatisticaJogosUser';
+import EstatisticaJogadoresUser from '../pages/estatisticaJogadoresUser';
+import Artilharia from '../pages/artilharia';
+import Jogos from '../pages/jogos';
+import EstatisticaJogos from '../pages/estatisticaJogos';
+import EstatisticaJogadores from '../pages/estatisticaJogadores';
+import Desempenho from '../pages/desempenho';
 const Stack = createNativeStackNavigator();
 
 const AppNavigator: React.FC = () => {
@@ -33,7 +39,15 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen name="dadosTime" component={DadosTime} />
         <Stack.Screen name="dadosTimeUser" component={DadosTimeUser} />
         <Stack.Screen name="listaArtilhariaUser" component={ArtilhariaUser} />
-
+        <Stack.Screen name="listaJogosUser" component={JogosUser} />
+        <Stack.Screen name="estatisticasJogosUser" component={EstatisticaJogosUser} />
+        <Stack.Screen name="estatisticasJogadoresUser" component={EstatisticaJogadoresUser} />
+        <Stack.Screen name="listaArtilharia" component={Artilharia} />
+        <Stack.Screen name="listaJogos" component={Jogos} />
+        <Stack.Screen name="estatisticasJogos" component={EstatisticaJogos} />
+        <Stack.Screen name="estatisticasJogadores" component={EstatisticaJogadores} />
+        <Stack.Screen name="listaDesempenho" component={Desempenho} />
+        
       </Stack.Navigator>
   );
 };

@@ -5,6 +5,8 @@ import styles from './formTimeA.style';
 const FormTimeAdversario: React.FC<{ navigation: any }> = ({ navigation }) => {
     const [nomeTimeA, setNomeTimeA] = useState('');
     const [endereco, setEndereco] = useState('');
+    const [cidade, setCidade] = useState('');
+    const [estado, setEstado] = useState('');
 
     return (
         <KeyboardAvoidingView 
@@ -26,6 +28,18 @@ const FormTimeAdversario: React.FC<{ navigation: any }> = ({ navigation }) => {
                 onChangeText={setEndereco}
                 value={endereco}
                 placeholder="Digite o endereço"
+            />
+            <TextInput 
+                style={styles.input} 
+                onChangeText={setCidade}
+                value={cidade}
+                placeholder="Digite a cidade"
+            />
+            <TextInput 
+                style={styles.input} 
+                onChangeText={setEstado}
+                value={estado}
+                placeholder="Digite o estado"
             />
             <TouchableOpacity style={styles.button} >
                 <Text style={styles.buttonText}>Salvar</Text>

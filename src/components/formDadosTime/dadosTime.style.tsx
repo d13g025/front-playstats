@@ -1,6 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+    scrollContainer: {
+        flexGrow: 1, // garante que a rolagem funcione corretamente mesmo com conteúdo menor
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+        paddingBottom: 40,
+      },
     container: {
         marginTop: 8,
         flexDirection: 'column', // Alinha os itens em linha
@@ -16,7 +22,7 @@ const styles = StyleSheet.create({
         borderRadius:40,
         width: 300,
         height: 65,
-        margin:23
+        margin:15
         
     }, 
     itemText:{
