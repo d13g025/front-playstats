@@ -3,25 +3,35 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        width: 500,
         alignItems: 'center',
-        backgroundColor: '#1b4332'
+        backgroundColor: '##1b4332'
     },
     title:{
         color: 'white',
-        fontSize:20
+        fontSize:25,
+        borderBottomWidth: 7,
+        borderBottomColor: 'white',
+        
     },
     button:{
         backgroundColor: 'white',
         borderRadius:20,
         width: 280,
         height: 40,
-        marginTop: '85%'
     },
     buttonText:{
-        color:'green',
+        color:'#669bbc',
         fontSize: 25,
         textAlign:'center',
-    }
+    },
+    item: {
+        borderBottomWidth: 3,
+        borderBottomColor: 'white',
+        width: 380,
+      },
+      text: {
+        fontSize: 16,
+        color:'white'
+      },
 })
 export default styles;

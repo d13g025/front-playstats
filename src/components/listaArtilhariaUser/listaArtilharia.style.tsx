@@ -16,12 +16,23 @@ const styles = StyleSheet.create({
         borderRadius:20,
         width: 280,
         height: 40,
-        marginTop: '85%'
+       marginBottom:20,
+        alignItems: 'center',
     },
     buttonText:{
-        color:'green',
+        color:'#669bbc',
         fontSize: 25,
         textAlign:'center',
-    }
+    },  
+    item: {
+        width:380,
+        borderBottomWidth: 3,
+        borderBottomColor: 'white',
+        
+      },
+      text: {
+        fontSize: 16,
+        color:'white'
+      }
 })
 export default styles;

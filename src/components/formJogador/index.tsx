@@ -26,21 +26,9 @@ const FormJogador: React.FC<{ navigation: any }> = ({ navigation }) => {
             />
             <TextInput 
                 style={styles.input} 
-                onChangeText={setIdade}
-                value={idade}
-                placeholder="Digite a idade do jogador"
-            />
-            <TextInput 
-                style={styles.input} 
                 onChangeText={setApelido}
                 value={apelido}
                 placeholder="Digite o apelido do jogador"
-            />
-            <TextInput 
-                style={styles.input} 
-                onChangeText={setCamisa}
-                value={camisa}
-                placeholder="Digite o número da camisa do jogador"
             />
             <TextInput 
                 style={styles.input} 
@@ -51,7 +39,7 @@ const FormJogador: React.FC<{ navigation: any }> = ({ navigation }) => {
             <TouchableOpacity style={styles.button} >
                 <Text style={styles.buttonText}>Salvar</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('menuOpcoes')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('menuCadastros')}>
                 <Text style={styles.buttonText}>Voltar</Text>
             </TouchableOpacity>
             <Image

@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#333533'
     },
     input: {
-
         width: '80%',               // Largura percentual em relação ao pai
         maxWidth: 300,             // Limitar a largura máxima (opcional)
         marginVertical: 10, 
@@ -19,27 +18,20 @@ const styles = StyleSheet.create({
         borderRadius:5,
         backgroundColor:'white'
     },
-    keyAvoid:{
-        width: '100%',               // Largura percentual em relação ao pai
-        maxWidth: 300,             // Limitar a largura máxima (opcional)
-        backgroundColor:'black'
-    },
     logo:{
         width: '35%', // largura da imagem
         height: 150, // altura da imagem
         marginHorizontal: 5, // Adiciona espaçamento horizontal entre os itens
         resizeMode: 'cover',
         alignSelf:'center',
-        marginTop:35
+        marginTop:115
     },
     title:{
-        
         alignSelf:'center',
         fontSize:32,
         fontWeight: 'normal',
         color:'white',
         marginTop: 20
-        
     },
     button:{
         backgroundColor: 'green',
@@ -53,12 +45,5 @@ const styles = StyleSheet.create({
         fontSize: 25,
         textAlign:'center',
     },
-    image:{
-        width: '40%', // largura da imagem
-        height: '40%', // altura da imagem
-        alignSelf: 'center',
-        marginTop:60,
-        resizeMode: 'cover',
-    }
 })
 export default styles;

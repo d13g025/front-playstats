@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: 20,
         paddingBottom: 40,
+        backgroundColor:'#333533'
       },
     container: {
         marginTop: 8,
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start', // Alinha os itens no topo
         paddingHorizontal: 19,
         paddingVertical: 10, // Adiciona um pouco de espaço vertical
-        backgroundColor: '#161a1d',
+        backgroundColor: '#333533',
     },
     button:{
         marginTop: 10,

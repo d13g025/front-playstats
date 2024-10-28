@@ -29,22 +29,10 @@ const FormTimeAdversario: React.FC<{ navigation: any }> = ({ navigation }) => {
                 value={endereco}
                 placeholder="Digite o endereço"
             />
-            <TextInput 
-                style={styles.input} 
-                onChangeText={setCidade}
-                value={cidade}
-                placeholder="Digite a cidade"
-            />
-            <TextInput 
-                style={styles.input} 
-                onChangeText={setEstado}
-                value={estado}
-                placeholder="Digite o estado"
-            />
             <TouchableOpacity style={styles.button} >
                 <Text style={styles.buttonText}>Salvar</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('menuOpcoes')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('menuCadastros')}>
                 <Text style={styles.buttonText}>Voltar</Text>
             </TouchableOpacity>
             <Image

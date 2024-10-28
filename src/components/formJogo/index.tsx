@@ -43,7 +43,7 @@ const FormJogo: React.FC<{ navigation: any }> = ({ navigation }) => {
                 <Text style={styles.buttonText}>Salvar</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('menuOpcoes')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('menuCadastros')}>
                 <Text style={styles.buttonText}>Voltar</Text>
             </TouchableOpacity>
             <Image

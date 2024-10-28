@@ -22,7 +22,15 @@ import Artilharia from '../pages/artilharia';
 import Jogos from '../pages/jogos';
 import EstatisticaJogos from '../pages/estatisticaJogos';
 import EstatisticaJogadores from '../pages/estatisticaJogadores';
-import Desempenho from '../pages/desempenho';
+import DesempenhoJogador from '../pages/desempenhoJogador';
+import Assistencias from '../pages/assistencia';
+import AssistenciasUser from '../pages/assistenciaUser';
+import DesempenhoJogos from '../pages/desempenhoJogos';
+import Cadastros from '../pages/cadastros';
+import Desempenhos from '../pages/desempenhos';
+import Perfil from '../pages/perfil';
+import Adversarios from '../pages/adversarios';
+import EditarJogo from '../pages/editarJogo';
 const Stack = createNativeStackNavigator();
 
 const AppNavigator: React.FC = () => {
@@ -39,15 +47,22 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen name="dadosTime" component={DadosTime} />
         <Stack.Screen name="dadosTimeUser" component={DadosTimeUser} />
         <Stack.Screen name="listaArtilhariaUser" component={ArtilhariaUser} />
+        <Stack.Screen name="listaAssistenciaUser" component={AssistenciasUser} />
         <Stack.Screen name="listaJogosUser" component={JogosUser} />
         <Stack.Screen name="estatisticasJogosUser" component={EstatisticaJogosUser} />
         <Stack.Screen name="estatisticasJogadoresUser" component={EstatisticaJogadoresUser} />
         <Stack.Screen name="listaArtilharia" component={Artilharia} />
+        <Stack.Screen name="listaAssistencia" component={Assistencias} />
         <Stack.Screen name="listaJogos" component={Jogos} />
         <Stack.Screen name="estatisticasJogos" component={EstatisticaJogos} />
         <Stack.Screen name="estatisticasJogadores" component={EstatisticaJogadores} />
-        <Stack.Screen name="listaDesempenho" component={Desempenho} />
-        
+        <Stack.Screen name="listaDesempenhoJogadores" component={DesempenhoJogador} />
+        <Stack.Screen name="listaDesempenhoJogos" component={DesempenhoJogos} />
+        <Stack.Screen name="menuCadastros" component={Cadastros} />
+        <Stack.Screen name="menuDesempenhos" component={Desempenhos} />
+        <Stack.Screen name="meuPerfil" component={Perfil} />
+        <Stack.Screen name="listaAdversarios" component={Adversarios} />
+        <Stack.Screen name="editarJogo" component={EditarJogo} />
       </Stack.Navigator>
   );
 };

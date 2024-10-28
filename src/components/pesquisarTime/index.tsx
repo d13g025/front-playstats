@@ -20,10 +20,18 @@ const PesquisarTime: React.FC<{ navigation: any }> = ({ navigation }) => {
             <TouchableOpacity style={styles.button} onPress={handleSignIn}>
                 <Text style={styles.buttonText}>Procurar</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('dadosTimeUser')}>
+            <TouchableOpacity>
                 <Text style={styles.title}>
                     Times
                 </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('dadosTimeUser')} style={{alignItems:'center'}}>
+                <Text style={{color:'white', marginTop:30}}>Real Madrid</Text>
+                <Image 
+                source={require('../assets/seuTime.png')}
+                style={{width:115, height:115}}
+                />
+                <Text style={{color:'white'}}>Clique aqui. Como se esse fosse oo time pesquisado</Text>
             </TouchableOpacity>
         </View>
     )

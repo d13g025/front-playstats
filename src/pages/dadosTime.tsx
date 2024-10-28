@@ -9,7 +9,7 @@ interface HomeProps {
   
   const DadosTime: React.FC<HomeProps> = ({ navigation }) => {
   return (
-    <View  style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor:'#161a1d'}}>
+    <View  style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor:'#333533'}}>
       <FormDadosTime navigation={navigation} />
     </View>
   );

@@ -38,18 +38,6 @@ const FormCadastro: React.FC<{ navigation: any }> = ({ navigation }) => {
                     />
                     <TextInput 
                         style={styles.input} 
-                        onChangeText={setCidade}
-                        value={cidade}
-                        placeholder="Digite a cidade"
-                    />
-                    <TextInput 
-                        style={styles.input} 
-                        onChangeText={setEstado}
-                        value={estado}
-                        placeholder="Digite o estado"
-                    />
-                    <TextInput 
-                        style={styles.input} 
                         onChangeText={setEmail}
                         value={email}
                         placeholder="Digite seu Email"

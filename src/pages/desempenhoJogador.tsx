@@ -6,11 +6,11 @@ interface HomeProps {
     navigation: NativeStackNavigationProp<any>;
   }
   
-  const Desempenho: React.FC<HomeProps> = ({ navigation }) => {
+  const DesempenhoJogador: React.FC<HomeProps> = ({ navigation }) => {
   return (
     <View  style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor:'#333533'}}>
       <ListaDesempenho navigation={navigation} />
     </View>
   );
 }
-export default Desempenho;
+export default DesempenhoJogador;
