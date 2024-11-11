@@ -1,6 +1,6 @@
 import  {View} from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import FormDadosTime from '../components/formDadosTime';
+import FormDadosTime from '../components/menuDadostime';
 
 
 interface HomeProps {

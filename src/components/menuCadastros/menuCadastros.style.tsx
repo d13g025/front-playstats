@@ -10,28 +10,36 @@ const styles = StyleSheet.create({
         paddingVertical: 10, // Adiciona um pouco de espaço vertical
         backgroundColor: '#333533',
     },
+    button1:{
+        marginTop: 120,
+        backgroundColor: '#2a9134',
+        borderRadius:15,
+        width: 300,
+        height: 65,
+        margin:23
+    },
     button:{
         marginTop: 10,
-        backgroundColor: 'green',
-        borderRadius:30,
+        backgroundColor: '#2a9134',
+        borderRadius:15,
+        width: 300,
+        height: 65,
+        margin:23
+    },
+    buttonVoltar:{
+        marginTop: 10,
+        backgroundColor: '#006400',
+        borderRadius:15,
         width: 300,
         height: 65,
         margin:23
         
-    }, 
+    },  
     itemText:{
         color: 'white',
         textAlign: 'center',
         fontSize: 18,
-        marginTop: 15
+        marginTop: 20
     },
-    logo:{
-        width: 175, // largura da imagem
-        height: 150, // altura da imagem
-        marginHorizontal: 5, // Adiciona espaçamento horizontal entre os itens
-        resizeMode: 'cover',
-        alignSelf:'center',
-        marginTop:30
-    }
 });
 export default styles;

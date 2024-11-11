@@ -9,18 +9,20 @@ const styles = StyleSheet.create({
     title:{
         color: 'white',
         fontSize:25,
-        borderBottomWidth: 7,
-        borderBottomColor: 'white',
+        borderBottomWidth: 5,
+        borderBottomColor: '#006400',
         
     },
     button:{
-        backgroundColor: 'white',
-        borderRadius:20,
+        backgroundColor: '#006400',
+        borderRadius:9,
         width: 280,
         height: 40,
+       marginBottom:20,
+        alignItems: 'center',
     },
     buttonText:{
-        color:'#669bbc',
+        color:'white',
         fontSize: 25,
         textAlign:'center',
     },
@@ -32,6 +34,18 @@ const styles = StyleSheet.create({
       text: {
         fontSize: 16,
         color:'white'
-      },
+      }, 
+      optionsButton: {
+        padding: 1,
+    },
+    optionsText: {
+        fontSize: 20,
+        color:'white',
+        backgroundColor:'gray',
+        borderRadius:50,
+        width:28,
+        textAlign:'center',
+        alignSelf:'flex-end'
+    }
 })
 export default styles;

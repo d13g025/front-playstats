@@ -1,55 +1,84 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import axios from 'axios'; // Biblioteca para fazer requisições HTTP
 import styles from './listaAssistenciaUser.style';
 
 interface Jogador {
-    id: string;
-    nome: string;
-    apelido: string;
-    posicao: string;
-    gols: number;
-    assistencias: number;
-    jogos: number
+    id_jogador: string;
+    nome_jogador: string;
+    apelido_jogador: string;
+    posicao_jogador: string;
+    gols_jogador: number;
+    assistencias_jogador: number;
 }
 
-const jogadores: Jogador[] = [
-    { id: '1', nome: 'Karim Benzema', apelido: 'Benz', posicao: 'Atacante', gols: 324, assistencias: 167, jogos: 610 },
-    { id: '2', nome: 'Luka Modrić', apelido: 'Luka', posicao: 'Meio-campo', gols: 90, assistencias: 70, jogos: 470 },
-    { id: '3', nome: 'Vinícius Júnior', apelido: 'Vini', posicao: 'Atacante', gols: 40, assistencias: 60, jogos: 130 },
-    { id: '4', nome: 'Rodrygo Goes', apelido: 'Rodrygo', posicao: 'Atacante', gols: 20, assistencias: 25, jogos: 100 },
-    { id: '5', nome: 'Toni Kroos', apelido: 'Kroos', posicao: 'Meio-campo', gols: 30, assistencias: 90, jogos: 400 },
-    { id: '6', nome: 'David Alaba', apelido: 'Alaba', posicao: 'Defensor', gols: 10, assistencias: 20, jogos: 70 },
-    { id: '7', nome: 'Eduardo Camavinga', apelido: 'Eddie', posicao: 'Meio-campo', gols: 5, assistencias: 10, jogos: 50 },
-    { id: '8', nome: 'Ferland Mendy', apelido: 'Mendy', posicao: 'Defensor', gols: 10, assistencias: 15, jogos: 80 },
-    { id: '9', nome: 'Antonio Rüdiger', apelido: 'Rüdiger', posicao: 'Defensor', gols: 5, assistencias: 3, jogos: 40 },
-    { id: '10', nome: 'Marco Asensio', apelido: 'Asensio', posicao: 'Atacante', gols: 30, assistencias: 25, jogos: 200 },
-];
+const ListaArtilharia: React.FC<{ navigation: any }> = ({ navigation }) => {
+    // Estado para armazenar os dados dos jogadores
+    const [jogadores, setJogadores] = useState<Jogador[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
 
-const jogadoresOrdenados = jogadores.sort((a, b) => b.assistencias - a.assistencias);  // sort, ordenando por ordem de gols
+    // Função para buscar os dados da API
+    const fetchJogadores = async () => {
+        try {
+            const response = await axios.get('http://192.168.255.212:3000/jogador'); //work192.168.1.219 home 192.168.0.10 roteador:192.168.255.212
+            setJogadores(response.data); // Armazena os dados no estado
+        } catch (err) {
+            setError('Erro ao carregar os dados');
+            console.error(err);
+        } finally {
+            setLoading(false); // Finaliza o carregamento
+        }
+    };
 
-const ListaAssistenciaUser: React.FC<{ navigation: any }> = ({ navigation }) => {
+    // Usamos useEffect para buscar os dados assim que o componente for montado
+    useEffect(() => {
+        fetchJogadores();
+    }, []);
 
+    // Exibe a lista ou uma mensagem de erro ou carregamento
+    if (loading) {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.title}>Carregando jogadores...</Text>
+            </View>
+        );
+    }
+
+    if (error) {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.title}>{error}</Text>
+            </View>
+        );
+    }
+
+    // Ordena os jogadores por gols
+    const jogadoresOrdenados = jogadores.sort((a, b) => b.assistencias_jogador - a.assistencias_jogador);
+
+    // Renderiza a lista de jogadores
     const renderItem = ({ item }: { item: Jogador }) => (
         <View style={styles.item}>
-            <Text style={styles.text}>{item.nome} ({item.apelido})</Text>
-            <Text style={styles.text}>Posição: {item.posicao}</Text>
-            <Text style={styles.text}>Gols: {item.gols}</Text>
-            <Text style={styles.text}>Assistências: {item.assistencias}</Text>
-            <Text style={styles.text}>Jogos: {item.jogos}</Text>
+            <Text style={styles.text}>{item.nome_jogador} ({item.apelido_jogador})</Text>
+            <Text style={styles.text}>Posição: {item.posicao_jogador}</Text>
+            <Text style={styles.text}>Gols: {item.gols_jogador}</Text>
+            <Text style={styles.text}>Assistências: {item.assistencias_jogador}</Text>
         </View>
     );
+
     return (
         <View style={styles.container}>
+            <Text style={styles.title}>Artilharia</Text>
             <FlatList
-                data={jogadoresOrdenados} // Use a lista ordenada
+                data={jogadoresOrdenados} // Lista ordenada por gols
                 renderItem={renderItem}
-                keyExtractor={item => item.id}
+                keyExtractor={(item) => item.id_jogador}
             />
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('dadosTimeUser')}>
                 <Text style={styles.buttonText}>Voltar</Text>
             </TouchableOpacity>
         </View>
     );
-}
+};
 
-export default ListaAssistenciaUser;
+export default ListaArtilharia;

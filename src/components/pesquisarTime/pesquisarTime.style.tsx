@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         marginVertical: 15, 
         paddingVertical: 10,
         paddingHorizontal: 15,
-        borderColor:'green',
+        borderColor:'#2a9134',
         borderWidth:3,
         borderRadius:5,
         backgroundColor:'white',
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
        fontSize:40
     },
     button:{
-        backgroundColor: 'green',
-        borderRadius:20,
+        backgroundColor: '#2a9134',
+        borderRadius:8,
         width: 190,
         height: 30
     },

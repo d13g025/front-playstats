@@ -9,7 +9,7 @@ interface HomeProps {
   
   const CadastrarTimeP: React.FC<HomeProps> = ({ navigation }) => {
   return (
-    <View  style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor:'black'}}>
+    <View  style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor:'#212529'}}>
       <FormCadastro navigation ={navigation}/>
     </View>
   );

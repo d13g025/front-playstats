@@ -28,27 +28,46 @@ const styles = StyleSheet.create({
         marginTop:80
     },
     title:{
-        
         alignSelf:'center',
-        fontSize:35,
+        fontSize:30,
         fontWeight: 'normal',
         color:'white',
-        marginTop: 20
-        
+        marginTop: 100,
     },
     button:{
-        backgroundColor: 'green',
-        borderRadius:20,
-        width: 280,
+        backgroundColor: '#2a9134',
+        borderRadius:9,
+        width: 290,
         height: 40,
-        marginTop: 10,
-        
+        marginTop: 10, 
+    },
+    buttonVoltar:{
+        backgroundColor: '#006400',
+        borderRadius:9,
+        width: 290,
+        height: 40,
+        marginTop: 20, 
     },
     buttonText:{
         color:'white',
         fontSize: 25,
         textAlign:'center',
     },
+    label: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        color:'white'
+      },
+      picker: {  
+        width: '60%',
+        height: 52,
+        borderColor: 'green',
+        marginBottom: 20,
+        borderWidth:3,
+        borderRadius:5,
+        backgroundColor:'white'
+      },
 });
 
 export default styles;

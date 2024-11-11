@@ -9,11 +9,13 @@ const styles = StyleSheet.create({
     },
     title:{
         color: 'white',
-        fontSize:20
+        fontSize:25,
+        borderBottomWidth: 5,
+        borderBottomColor: '#006400',
     },
     button:{
-        backgroundColor: 'green',
-        borderRadius:20,
+        backgroundColor: '#006400',
+        borderRadius:9,
         width: 280,
         height: 40,
        marginBottom:20,

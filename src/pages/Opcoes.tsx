@@ -9,7 +9,7 @@ interface OpcoesProps {
 
 const Opcoes: React.FC<OpcoesProps> = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor: 'black' }}>
+    <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor: '#212529' }}>
       <MenuOpcoes navigation={navigation} />
     </View>
   );

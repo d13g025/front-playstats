@@ -17,14 +17,29 @@ const styles = StyleSheet.create({
         paddingVertical: 10, // Adiciona um pouco de espaço vertical
         backgroundColor: '#333533',
     },
-    button:{
-        marginTop: 10,
-        backgroundColor: '#023e8a',
-        borderRadius:40,
+    button1:{
+        marginTop: 100,
+        backgroundColor: '#2a9134',
+        borderRadius:15,
         width: 300,
         height: 65,
         margin:15
-        
+    },
+    button:{
+        marginTop: 10,
+        backgroundColor: '#2a9134',
+        borderRadius:15,
+        width: 300,
+        height: 65,
+        margin:15
+    },
+    buttonVoltar:{
+        marginTop: 10,
+        backgroundColor: '#006400',
+        borderRadius:15,
+        width: 300,
+        height: 65,
+        margin:15
     }, 
     itemText:{
         color: 'white',

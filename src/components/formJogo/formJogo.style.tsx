@@ -24,27 +24,26 @@ const styles = StyleSheet.create ({
         maxWidth: 300,             // Limitar a largura máxima (opcional)
         backgroundColor:'black'
     },
-    logo:{
-        width: '35%', // largura da imagem
-        height: 150, // altura da imagem
-        marginHorizontal: 5, // Adiciona espaçamento horizontal entre os itens
-        resizeMode: 'cover',
-        alignSelf:'center',
-        marginTop:35
-    },
     title:{
         
         alignSelf:'center',
         fontSize:35,
         fontWeight: 'normal',
         color:'white',
-        marginTop: 20
+        marginTop: 80
         
     },
     button:{
-        backgroundColor: 'green',
-        borderRadius:20,
-        width: 280,
+        backgroundColor: '#2a9134',
+        borderRadius:10,
+        width: 290,
+        height: 40,
+        marginTop: 10
+    },
+    buttonVoltar:{
+        backgroundColor: '#006400',
+        borderRadius:10,
+        width: 290,
         height: 40,
         marginTop: 10
     },
@@ -53,12 +52,22 @@ const styles = StyleSheet.create ({
         fontSize: 25,
         textAlign:'center',
     },
-    image:{
-        width: '40%', // largura da imagem
-        height: '40%', // altura da imagem
-        alignSelf: 'center',
-        marginTop:60,
-        resizeMode: 'cover',
-    }
+       // Estilo para o item de cada time na lista
+    timeItem: {
+        padding: 15,  // Espaçamento interno para o item
+        marginVertical: 5, // Margem vertical para separar os itens
+        backgroundColor: 'white', // Cor de fundo do item
+        borderRadius: 5, // Bordas arredondadas
+        width:'100%'
+        
+    },
+
+    // Estilo para o texto dentro de cada item (nome do time)
+    timeText: {
+        fontSize: 16, // Tamanho da fonte
+        fontWeight: 'bold', // Negrito para destacar o nome do time
+        color: '#333', // Cor do texto (cor escura para boa legibilidade)
+        textAlign: 'center', // Alinhar o texto ao centro
+    },
 });
 export default styles;

@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './dadosTime.style';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const FormDadosTime: React.FC<{ navigation: any }> = ({ navigation }) => {
+const MenuDadosTime: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate ('listaArtilharia')}>
+        <TouchableOpacity style={styles.button1} onPress={() => navigation.navigate ('listaArtilharia')}>
           <Text style={styles.itemText}>Lista de Artilharia e assistencias</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate ('listaJogos')}>
@@ -17,15 +18,11 @@ const FormDadosTime: React.FC<{ navigation: any }> = ({ navigation }) => {
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate ('estatisticasJogos')}>
           <Text style={styles.itemText}>Estatisticas dos jogos</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('menuOpcoes')}>
+        <TouchableOpacity style={styles.buttonVoltar} onPress={() => navigation.navigate('menuOpcoes')}>
           <Text style={styles.itemText}>Voltar</Text>
         </TouchableOpacity>
-        <Image 
-          source={require('../assets/img_dadosTime.png')}
-          style={styles.logo}
-          />
       </View>
   );
 };
 
-export default FormDadosTime;
+export default MenuDadosTime;

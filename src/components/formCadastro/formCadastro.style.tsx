@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems: 'center'
     },
+    
     innerContainer: {
         flexGrow: 1, // Permite que o ScrollView se expanda conforme necessário
         justifyContent: 'center', // Alinha verticalmente os itens
@@ -23,27 +24,26 @@ const styles = StyleSheet.create({
         borderRadius:5,
         backgroundColor:'white'
     },
-    logo:{
-        width: 175, // largura da imagem
-        height: 150, // altura da imagem
-        marginHorizontal: 5, // Adiciona espaçamento horizontal entre os itens
-        resizeMode: 'cover',
-        alignSelf:'center',
-        marginTop:30
-    },
     title:{
-        marginTop:'1%',
+        
         alignSelf: 'center',
         fontSize: 40,
         fontWeight: 'normal',
         color: 'white'
     },
     button:{
-        backgroundColor: 'green',
-        borderRadius:20,
+        backgroundColor: '#2a9134',
+        borderRadius:9,
         width: 280,
         height: 40,
         marginTop:9,
+    },
+    buttonCancelar:{
+        backgroundColor: '#006400',
+        borderRadius:9,
+        width: 280,
+        height: 40,
+        marginTop:20,
     },
     buttonText:{
         color:'white',

@@ -26,12 +26,11 @@ const PesquisarTime: React.FC<{ navigation: any }> = ({ navigation }) => {
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('dadosTimeUser')} style={{alignItems:'center'}}>
-                <Text style={{color:'white', marginTop:30}}>Real Madrid</Text>
-                <Image 
+                <Text style={{color:'white', marginTop:30}}>Real Madrid</Text><Image 
                 source={require('../assets/seuTime.png')}
                 style={{width:115, height:115}}
                 />
-                <Text style={{color:'white'}}>Clique aqui. Como se esse fosse oo time pesquisado</Text>
+                <Text style={{color:'white'}}> time pesquisado</Text>
             </TouchableOpacity>
         </View>
     )

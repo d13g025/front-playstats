@@ -6,6 +6,11 @@ const styles = StyleSheet.create({
         width: 500,
         alignItems: 'center'
     },
+    logo:{
+        width: 55, // largura da imagem
+        height: 65, // altura da imagem
+        resizeMode: 'cover',
+    },
     input: {
 
         width: '80%',               // Largura percentual em relação ao pai
@@ -21,14 +26,14 @@ const styles = StyleSheet.create({
     title:{
         marginTop:80,
         alignSelf:'center',
-        fontSize:40,
+        fontSize:35,
         fontWeight: 'normal',
         color:'white'
         
     },
     button:{
-        backgroundColor: 'green',
-        borderRadius:20,
+        backgroundColor: '#006400',
+        borderRadius:10,
         width: 280,
         height: 40,
         margin:10
@@ -38,13 +43,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         textAlign:'center',
     },
-    image:{
-        width: '54%', // largura da imagem
-        height: '40%', // altura da imagem
-        alignSelf: 'center',
-        marginTop:10,
-        resizeMode: 'cover',
-    }
+    
 });
 
 export default styles;

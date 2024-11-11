@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
 import styles from './listaDesempenhoJogos.style';
+import axios from 'axios';
+
 
 interface Jogo {
     id: string;
@@ -49,20 +51,28 @@ const ListaDesempenhoJogos: React.FC<{ navigation: any }> = ({ navigation }) => 
             [
                 {
                     text: 'Editar',
-                    onPress: () => navigation.navigate('editarJogo', { jogo: item }),
+                    onPress: () => navigation.navigate('editarJogo', { jogo: item })  // Passando o objeto jogo inteiro
                 },
                 {
                     text: 'Excluir',
-                    onPress: () => console.log(`Excluir ${item.timePrincipal}`),
+                    onPress: async () => {
+                        try {
+                            await axios.delete(`http://192.168.1.219:3000/jogo/${item.id}`);
+                            Alert.alert('Sucesso', `Jogo de ${item.timePrincipal} excluído com sucesso!`);
+                        } catch (error) {
+                            Alert.alert('Erro', 'Erro ao excluir o jogo. Tente novamente.');
+                            console.error(error);
+                        }
+                    },
                 },
                 { text: 'Cancelar', style: 'cancel' },
             ],
             { cancelable: true }
         );
     };
-
     return (
         <View style={styles.container}>
+            <Text style={styles.title}>Atualizar resultado dos jogos</Text>
             <FlatList
                 data={orderedJogos} // Use a lista ordenada
                 renderItem={renderItem}

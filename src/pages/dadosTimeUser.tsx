@@ -1,6 +1,6 @@
 import  {View} from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import FormDadosTimeUser from '../components/formDadosTimeUser';
+import MenuDadosTimeUser from '../components/menuDadosTimeUser';
 
 interface HomeProps {
     navigation: NativeStackNavigationProp<any>;
@@ -8,8 +8,8 @@ interface HomeProps {
   
   const DadosTimeUser: React.FC<HomeProps> = ({ navigation }) => {
   return (
-    <View  style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor:'#161a1d'}}>
-      <FormDadosTimeUser navigation={navigation} />
+    <View  style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor:'#212529'}}>
+      <MenuDadosTimeUser navigation={navigation} />
     </View>
   );
 }

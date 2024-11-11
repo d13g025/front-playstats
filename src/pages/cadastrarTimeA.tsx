@@ -2,7 +2,6 @@ import  {View} from 'react-native';
 import FormTimeAdversario from '../components/formTimeAdversario/index';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-
 interface HomeProps {
     navigation: NativeStackNavigationProp<any>;
   }

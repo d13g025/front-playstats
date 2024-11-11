@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start', // Alinha os itens no topo
         paddingHorizontal: 19,
         paddingVertical: 10, // Adiciona um pouco de espaço vertical
-        backgroundColor: 'black',
+        backgroundColor: '#212529',
     },
     logo:{
         width: '19%', // largura da imagem
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     item: {
       
         marginVertical: 5,
-        backgroundColor: 'green',
+        backgroundColor: '#2a9134',
         borderRadius: 5,
         width: 92,
         height: 20,
