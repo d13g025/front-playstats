@@ -10,5 +10,5 @@ Este projeto contém códigos de Frontend de um aplicativo que organiza e retorn
     Tela do usuário OBSERVADOR: consegue consultar dados gerados sobre seu time.
 
   ## Links
-  [link]([http://google.com](https://apps.microsoft.com/detail/xp9khm4bk9fz7q?launch=true&mode=full&hl=pt-br&gl=br&ocid=bingwebsearch))
+  [link](https://code.visualstudio.com/download)
   
