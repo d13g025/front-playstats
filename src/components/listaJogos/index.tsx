@@ -1,53 +1,107 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
+import axios from 'axios'; // Biblioteca para fazer requisições HTTP
 import styles from './listaJogos.style';
 
 interface Jogo {
-    id: string;
-    timePrincipal: string;
-    placar: string;
-    timeAdversario: string;
-    vencedor: string;
+  id_jogo: string;
+  pk_login_id_login: string;
+  placar_jogo: string;
+  pk_timeAdversario_id_timeAdversario: string;
+  vencedor_jogo: string;
+  nome_timeAdversario: string;
+  nome_timePrincipal: string;
+  endereco_timeAdversario: string;
 }
 
-const jogos: Jogo[] = [
-    { id: '1', timePrincipal: 'Real Madrid', placar: '1-0', timeAdversario: 'Barcelona', vencedor: 'Real Madrid' },
-    { id: '2', timePrincipal: 'Real Madrid', placar: '2-2', timeAdversario: 'Atlético de Madrid', vencedor: 'Empate' },
-    { id: '3', timePrincipal: 'Real Madrid', placar: '3-1', timeAdversario: 'Sevilla', vencedor: 'Real Madrid' },
-    { id: '4', timePrincipal: 'Real Madrid', placar: '2-1', timeAdversario: 'Real Betis', vencedor: 'Real Madrid' },
-    { id: '5', timePrincipal: 'Real Madrid', placar: '2-0', timeAdversario: 'FC Porto', vencedor: 'Real Madrid' },
-    { id: '6', timePrincipal: 'Real Madrid', placar: '1-1', timeAdversario: 'Valencia', vencedor: 'Empate' },
-    { id: '7', timePrincipal: 'Real Madrid', placar: '4-1', timeAdversario: 'Real Sociedad', vencedor: 'Real Madrid' },
-    { id: '8', timePrincipal: 'Real Madrid', placar: '3-0', timeAdversario: 'Cádiz', vencedor: 'Real Madrid' },
-    { id: '9', timePrincipal: 'Real Madrid', placar: '1-1', timeAdversario: 'Shakhtar Donetsk', vencedor: 'Empate' },
-    { id: '10', timePrincipal: 'Real Madrid', placar: '2-0', timeAdversario: 'Athletic Bilbao', vencedor: 'Real Madrid' },
-];
+const ListaJogos: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+  const { id_login } = route.params; // Recupera o id_login da navegação
 
-const orderedJogos = [...jogos].sort((a, b) => a.id.localeCompare(b.id));
+  const [jogos, setJogos] = useState<Jogo[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-const ListaJogos: React.FC<{ navigation: any }> = ({ navigation }) => {
+  // Função para buscar os dados da API
+  const fetchJogos = async () => {
+    try {
+      // Usando o id_login na URL da requisição
+      const response = await axios.get(`http://192.168.1.219:3000/jogo/porLogin/${id_login}`);
+      const jogosData = response.data;
 
-    const renderItem = ({ item }: { item: Jogo }) => (
-        <View style={styles.item}>
-            <Text style={styles.text}>{item.timePrincipal}</Text>
-            <Text style={styles.text}>{item.placar}</Text>
-            <Text style={styles.text}>{item.timeAdversario}</Text>
-            <Text style={styles.text}>Vencedor da partida: {item.vencedor}</Text>
-        </View>
+      // Buscar detalhes completos de cada jogo (nome_timePrincipal, nome_timeAdversario, endereco_timeAdversario)
+      const jogosComDetalhes = await Promise.all(
+        jogosData.map(async (jogo: Jogo) => {
+          try {
+            const jogoDetalhado = await axios.get(`http://192.168.1.219:3000/jogo/tpEta/${jogo.id_jogo}`);
+            return {
+              ...jogo,
+              nome_timePrincipal: jogoDetalhado.data.nome_time_principal,
+              nome_timeAdversario: jogoDetalhado.data.nome_time_adversario,
+              endereco_timeAdversario: jogoDetalhado.data.endereco_time_adversario,
+            };
+          } catch (err) {
+            console.error(`Erro ao buscar detalhes do jogo ${jogo.id_jogo}:`, err);
+            return jogo;
+          }
+        })
+      );
+
+      setJogos(jogosComDetalhes);
+    } catch (err) {
+      setError('Erro ao carregar os dados');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchJogos();
+  }, [id_login]);
+
+  // Exibe uma mensagem de carregamento ou erro, caso necessário
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Carregando jogos...</Text>
+      </View>
     );
+  }
 
-    return(
-        <View style={styles.container}>
-            <Text style={styles.title}>Lista de Jogos</Text>
-            <FlatList
-                data={orderedJogos} // Use a lista ordenada
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-            />
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('dadosTime')}>
-                <Text style={styles.buttonText}>Voltar</Text>
-            </TouchableOpacity>
-        </View>
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>{error}</Text>
+      </View>
     );
-}
+  }
+
+  // Ordena os jogos pela data de jogo (caso seja necessário, ajustando conforme a API)
+  const orderedJogos = jogos.sort((a, b) => new Date(a.pk_login_id_login).getTime() - new Date(b.pk_timeAdversario_id_timeAdversario).getTime());
+
+  const renderItem = ({ item }: { item: Jogo }) => (
+    <View style={styles.item}>
+      <Text style={styles.text}>Time Principal: {item.nome_timePrincipal || 'Não disponível'}</Text>
+      <Text style={styles.text}>Time Adversário: {item.nome_timeAdversario || 'Não disponível'}</Text>
+      <Text style={styles.text}>Placar: {item.placar_jogo}</Text>
+      <Text style={styles.text}>Vencedor: {item.vencedor_jogo}</Text>
+      <Text style={styles.text}>Endereço do Adversário: {item.endereco_timeAdversario || 'Não disponível'}</Text>
+    </View>
+  );
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Lista de Jogos</Text>
+      <FlatList
+        data={orderedJogos} // Lista de jogos ordenada
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id_jogo}
+      />
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('dadosTime')}>
+        <Text style={styles.buttonText}>Voltar</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
 export default ListaJogos;

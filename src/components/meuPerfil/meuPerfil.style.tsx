@@ -8,33 +8,45 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start', // Alinha os itens no topo
         paddingHorizontal: 19,
         paddingVertical: 10, // Adiciona um pouco de espaço vertical
-        backgroundColor: '#333533',
+        backgroundColor: '#10451d',
     },
     button:{
-        marginTop:175,
-        backgroundColor: 'green',
-        borderRadius:30,
+        marginTop: 170,
+        backgroundColor: '#4b7f52',
+        borderRadius:15,
         width: 300,
-        height: 65,  
+        height: 65,
+        margin:23,
+        borderWidth:2,
+        borderColor:'gold' 
     }, 
     button1:{
-        marginTop: 20,
-        backgroundColor: 'green',
-        borderRadius:30,
+        marginTop: 5,
+        backgroundColor: '#000f81',
+        borderRadius:15,
         width: 300,
-        height: 65,  
+        height: 65,
+        margin:23,
+        borderWidth:2,
+        borderColor:'gold'
     },
-    itemText:{
+    textButtonEditar:{
         color: 'white',
         textAlign: 'center',
-        fontSize: 18,
+        fontSize: 20,
+        marginTop: 15
+    },
+    textButtonVoltar:{
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 20,
         marginTop: 15
     },
     text:{
         fontSize:20,
         color:'white',
         marginTop:30,
-
-    }
+    },
+   
 });
 export default styles;

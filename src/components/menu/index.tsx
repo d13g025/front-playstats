@@ -9,10 +9,10 @@ const Menu: React.FC<{ navigation: any }> = ({ navigation }) => {
         source={require('../assets/logo.png')}
         style={styles.logo}
       />
-      <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('cadastrarTime')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('cadastrarTime')}>
         <Text style={styles.itemText}>Cadastrar time</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('fazerLogin')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('fazerLogin')}>
         <Text style={styles.itemText}>Fazer login</Text>
       </TouchableOpacity>
     </View>

@@ -3,6 +3,7 @@ import { Text, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, Platfor
 import styles from './formCadastro.style';
 import axios from 'axios'; // Para enviar os dados para o back
 
+
 const FormCadastro: React.FC<{ navigation: any }> = ({ navigation }) => {
     const [nome_timePrincipal, setNome_timePrincipal] = useState('');
     const [endereco_timePrincipal, setEndereco_timePrincipal] = useState('');
@@ -19,7 +20,7 @@ const FormCadastro: React.FC<{ navigation: any }> = ({ navigation }) => {
         } else {
             try {
                 // Enviar todos os dados para a API /timePrincipal para cadastro completo
-                const responseTime = await axios.post('http://192.168.255.212:3000/login', {//work 192.168.1.219 casa:192.168.0.10 rotiador:192.168.255.212
+                const responseTime = await axios.post('http://192.168.1.219:3000/login', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
                     nome_timePrincipal,
                     endereco_timePrincipal,
                     email,
@@ -27,13 +28,13 @@ const FormCadastro: React.FC<{ navigation: any }> = ({ navigation }) => {
                 });
 
                 if (responseTime) {
-                    Alert.alert('Sucesso', 'Time e usuário cadastrados com sucesso!');
-                    navigation.navigate('menuOpcoes'); // Navega para a próxima tela após o cadastro
+                    Alert.alert('Sucesso', 'Time e usuário cadastrados com sucesso! Favor, realize o login');
+                    navigation.navigate('Home'); // Navega para a próxima tela após o cadastro
                 } else {
                     Alert.alert('Erro', 'Falha ao cadastrar o time e o usuário. Tente novamente.');
                 }
             } catch (error) {
-                Alert.alert('Erro', 'Ocorreu um erro ao cadastrar. Tente novamente.');
+                Alert.alert('Erro', 'servidor.');
                 console.error(error);
             }
         }
@@ -51,7 +52,7 @@ const FormCadastro: React.FC<{ navigation: any }> = ({ navigation }) => {
                 keyboardShouldPersistTaps="handled"
             >
                 
-                <Text style={styles.title}>Cadastro</Text> 
+                <Text style={styles.title}>Cadastre seu time aqui!</Text> 
 
                 <TextInput 
                     style={styles.input} 
@@ -87,10 +88,10 @@ const FormCadastro: React.FC<{ navigation: any }> = ({ navigation }) => {
 
                 {/* Botões */}
                 <TouchableOpacity style={styles.button} onPress={handleSave}>
-                    <Text style={styles.buttonText}>Salvar</Text>
+                    <Text style={styles.buttonTextSalvar}>Salvar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonCancelar} onPress={() => navigation.navigate('Home')}>
-                    <Text style={styles.buttonText}>Cancelar</Text>
+                    <Text style={styles.buttonTextCancelar}>Cancelar</Text>
                 </TouchableOpacity>
                 
             </ScrollView>

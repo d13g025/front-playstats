@@ -15,10 +15,10 @@ const MeuPerfil: React.FC<{ navigation: any }> = ({ navigation }) => {
         <Text style={styles.text}>E-mail:</Text>
         <Text style={styles.text}>Senha:</Text>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.itemText}>Editar Perfil</Text>
+          <Text style={styles.textButtonEditar}>Editar Perfil</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button1} onPress={() => navigation.navigate('menuOpcoes')}>
-          <Text style={styles.itemText}>Voltar</Text>
+          <Text style={styles.textButtonVoltar}>Voltar</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

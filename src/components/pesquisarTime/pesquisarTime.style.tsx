@@ -13,34 +13,28 @@ const styles = StyleSheet.create({
         marginVertical: 15, 
         paddingVertical: 10,
         paddingHorizontal: 15,
-        borderColor:'#2a9134',
-        borderWidth:3,
-        borderRadius:5,
+        borderColor:'gold',
+        borderWidth:2,
+        borderRadius:7,
         backgroundColor:'white',
         textAlign: 'center'
     },
-    image:{
-        width: '40%', // largura da imagem
-        height: '40%', // altura da imagem
-        alignSelf: 'center',
-        marginTop:60,
-        resizeMode: 'cover',
-    },
-    title:{
-       color: 'white',
-       fontSize:40
-    },
-    button:{
-        backgroundColor: '#2a9134',
+    buttonTime:{
+        marginTop:10,
+        backgroundColor: '#000f81',
         borderRadius:8,
-        width: 190,
-        height: 30
+        width: '80%',
+        height: 40,
+        borderWidth:2,
+        borderColor:'gold'
     },
-    buttonText:{
-        color:'white',
-        fontSize: 20,
+    buttonTextTime:{
         textAlign:'center',
-    }
+        fontSize: 20,
+        color:'white',
+        marginTop:3
+    },
+    
 });
 
 export default styles;

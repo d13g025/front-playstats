@@ -10,7 +10,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor: '#212529' }}>
+    <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor: '#10451d' }}>
       <Menu navigation={navigation} />
       <PesquisarTime navigation={navigation}/>
     </View>

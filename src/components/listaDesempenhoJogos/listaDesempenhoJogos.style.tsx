@@ -5,26 +5,30 @@ const styles = StyleSheet.create({
         flex:1,
         width: 900,
         alignItems: 'center',
-        backgroundColor: '#333533'
+        backgroundColor: '#10451d'
     },
     title:{
         color: 'white',
         fontSize:25,
         borderBottomWidth: 5,
-        borderBottomColor: '#006400',
+        borderBottomColor: 'gold',
+        marginTop:40
     },
     button:{
-        backgroundColor: '#006400',
-        borderRadius:9,
-        width: 280,
-        height: 40,
-       marginBottom:20,
-        alignItems: 'center',
+        marginTop: 10,
+        backgroundColor: '#000f81',
+        borderRadius:15,
+        width: 300,
+        height: 60,
+        margin:23,
+        borderWidth:2,
+        borderColor:'gold'
     },
     buttonText:{
         color:'white',
         fontSize: 25,
         textAlign:'center',
+        marginTop:7
     },  
     item: {
         borderBottomWidth: 5,
@@ -33,15 +37,16 @@ const styles = StyleSheet.create({
       },
       text: {
         fontSize: 16,
-        color:'white'
+        color:'white',
+        marginTop:3
       }, 
       optionsButton: {
         padding: 1,
     },
     optionsText: {
         fontSize: 20,
-        color:'white',
-        backgroundColor:'gray',
+        color:'#000f81',
+        backgroundColor:'gold',
         borderRadius:50,
         width:28,
         textAlign:'center',

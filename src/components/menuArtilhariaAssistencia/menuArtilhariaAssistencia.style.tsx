@@ -3,20 +3,24 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container:{
         flexDirection:'row',
-        backgroundColor: '#073b4c'
+        backgroundColor: '#10451d'
     },
     buttonMenu:{
-        backgroundColor: 'white',
+        marginTop:40,
         borderRadius:20,
-        width: 120,
-        height: 20,
+        width: 140,
+        height: 35,
         alignItems: 'center',
-        margin: 10
+        margin: 10,
+        backgroundColor: '#000f81',
+        borderWidth:2,
+        borderColor:'gold'
     },
     buttonMenuText:{
-        color:'#669bbc',
-        fontSize: 10,
+        color:'white',
+        fontSize: 14,
         textAlign:'center',
+        marginTop:3
     },
 })
 export default styles;

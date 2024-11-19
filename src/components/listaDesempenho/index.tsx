@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
-import axios from 'axios'; // Biblioteca para fazer requisições HTTP
+import axios from 'axios';
 import styles from './listaDesempenho.style';
 
 interface Jogador {
-    id_jogador: string;
+    id_login: number;
+    id_jogador: number;  // Alterado para number
     nome_jogador: string;
     apelido_jogador: string;
     posicao_jogador: string;
@@ -12,43 +13,50 @@ interface Jogador {
     assistencias_jogador: number;
 }
 
-const ListaDesempenho: React.FC<{ navigation: any }> = ({ navigation }) => {
-    // Estado para armazenar os dados dos jogadores
+const ListaDesempenho: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+    const { id_login } = route.params; // Recupera o id_login da navegação
+    console.log('fk_login_id_login:', id_login);  // Verifique o valor
+
+const loginId = parseInt(id_login, 10);
+
+if (isNaN(loginId)) {
+    Alert.alert('Erro', 'ID de login inválido');
+    return null;  // Retorna null para evitar carregar a tela
+}
+
     const [jogadores, setJogadores] = useState<Jogador[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
-    // Função para buscar os dados da API
     const fetchJogadores = async () => {
         try {
-            const response = await axios.get('http://192.168.255.212:3000/jogador'); //work:192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
-            setJogadores(response.data); // Armazena os dados no estado
+            // Usando o id_login na URL da requisição
+            const response = await axios.get(`http://192.168.1.219:3000/jogador/porLogin/${id_login}`); //work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+            setJogadores(response.data);
         } catch (err) {
             setError('Erro ao carregar os dados');
             console.error(err);
         } finally {
-            setLoading(false); // Finaliza o carregamento
+            setLoading(false);
         }
     };
 
-    // Usamos useEffect para buscar os dados assim que o componente for montado
     useEffect(() => {
         fetchJogadores();
-    }, []);
+    }, [id_login]);  // Recarregar os jogadores sempre que o id_login mudar
 
-    // Função para exibir as opções de editar e excluir
     const showOptions = (item: Jogador) => {
         Alert.alert(
             'Opções',
-            `Escolha uma ação para ${item.nome_jogador}:`,
+            `Escolha uma ação para ${item.id_jogador}:`,
             [
                 {
                     text: 'Editar',
-                    onPress: () => console.log(`Editar ${item.nome_jogador}`), // Lógica de edição
+                    onPress: () => navigateToEditPage(item),
                 },
                 {
                     text: 'Excluir',
-                    onPress: () => console.log(`Excluir ${item.nome_jogador}`), // Lógica de exclusão
+                    onPress: () => handleDelete(item.id_jogador),
                 },
                 { text: 'Cancelar', style: 'cancel' },
             ],
@@ -56,7 +64,30 @@ const ListaDesempenho: React.FC<{ navigation: any }> = ({ navigation }) => {
         );
     };
 
-    // Exibe a lista ou uma mensagem de erro ou carregamento
+    const navigateToEditPage = (item: Jogador) => {
+        const id_jogador = parseInt(item.id_jogador.toString(), 10);  // Garantir que o id seja número
+        if (isNaN(id_jogador)) {
+            Alert.alert('Erro', 'ID de jogador inválido');
+            return;
+        }
+        navigation.navigate('editarDesempenhoJogador', { id_jogador });  // Passando o parâmetro correto
+    };
+
+    const handleDelete = async (id_jogador: number) => {
+        try {
+            const response = await axios.delete(`http://192.168.1.219:3000/jogador/${id_jogador}`);//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+            if (response.status === 200) {
+                Alert.alert('Sucesso', 'Jogador excluído com sucesso!');
+                fetchJogadores();
+            } else {
+                Alert.alert('Erro', 'Não foi possível excluir o jogador.');
+            }
+        } catch (err) {
+            Alert.alert('Erro', 'Erro ao excluir o jogador.');
+            console.error(err);
+        }
+    };
+
     if (loading) {
         return (
             <View style={styles.container}>
@@ -73,10 +104,8 @@ const ListaDesempenho: React.FC<{ navigation: any }> = ({ navigation }) => {
         );
     }
 
-    // Ordena os jogadores por gols
     const jogadoresOrdenados = jogadores.sort((a, b) => b.gols_jogador - a.gols_jogador);
 
-    // Renderiza a lista de jogadores
     const renderItem = ({ item }: { item: Jogador }) => (
         <View style={styles.item}>
             <Text style={styles.text}>{item.nome_jogador} ({item.apelido_jogador})</Text>
@@ -94,11 +123,11 @@ const ListaDesempenho: React.FC<{ navigation: any }> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Atualizar gols e assistencias</Text>
+            <Text style={styles.title}>Atualizar gols e assistências</Text>
             <FlatList
-                data={jogadoresOrdenados} // Lista ordenada por gols
+                data={jogadoresOrdenados}
                 renderItem={renderItem}
-                keyExtractor={(item) => item.id_jogador}
+                keyExtractor={(item) => item.id_jogador.toString()}
             />
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('menuDesempenhos')}>
                 <Text style={styles.buttonText}>Voltar</Text>

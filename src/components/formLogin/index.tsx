@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
+import { useAuth } from '../context/AuthContext';  // Importe o hook useAuth
 import styles from './formLogin.style';
 
 const FormLogin: React.FC<{ navigation: any }> = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const { setIdLogin } = useAuth();  // Acessa a função setIdLogin do contexto
 
     const handleLogin = async () => {
         if (!email || !senha) {
@@ -13,8 +15,7 @@ const FormLogin: React.FC<{ navigation: any }> = ({ navigation }) => {
         }
 
         try {
-            // Definindo a URL da API e o corpo da requisição
-            const response = await fetch('http://192.168.255.212:3000/autentica', {//work 192.168.1.219 casa:192.168.0.10 Rotiador:192.168.255.212
+            const response = await fetch('http://192.168.1.219:3000/autentica', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,12 +28,15 @@ const FormLogin: React.FC<{ navigation: any }> = ({ navigation }) => {
 
             const data = await response.json();
 
-            // Verificando a resposta da API
             if (response.ok) {
-                // Login bem-sucedido, navega para a tela de opções
-                navigation.navigate('menuOpcoes');
+                const { id_login } = data;
+                if (id_login) {
+                    setIdLogin(id_login);  // Atualiza o id_login no contexto
+                    navigation.navigate('menuOpcoes');  // Navega para o menuOpcoes
+                } else {
+                    Alert.alert('Erro', 'ID de login não encontrado.');
+                }
             } else {
-                // Exibe erro se a resposta for diferente de ok
                 Alert.alert('Erro', data.message || 'Erro ao fazer login');
             }
         } catch (error) {
@@ -40,11 +44,12 @@ const FormLogin: React.FC<{ navigation: any }> = ({ navigation }) => {
             Alert.alert('Erro', 'Não foi possível conectar ao servidor.');
         }
     };
+
     return (
         <View style={styles.container}>
             <Image
-            source={require('../assets/logo.png')}
-            style={styles.logo}
+                source={require('../assets/logo.png')}
+                style={styles.logo}
             />
             <Text style={styles.title}>Seja bem vindo(a)!</Text>
 
@@ -52,25 +57,20 @@ const FormLogin: React.FC<{ navigation: any }> = ({ navigation }) => {
                 style={styles.input}
                 placeholder="Digite seu Email"
                 value={email}
-                onChangeText={setEmail} // Atualizando o estado
+                onChangeText={setEmail}
             />
             <TextInput
                 style={styles.input}
                 placeholder="Sua Senha"
-                secureTextEntry // Adiciona segurança ao campo de senha
+                secureTextEntry
                 value={senha}
-                onChangeText={setSenha} // Atualizando o estado
+                onChangeText={setSenha}
             />
-            <TouchableOpacity style={styles.button}  onPress={handleLogin}>
+            <TouchableOpacity style={styles.button} onPress={handleLogin}>
                 <Text style={styles.buttonText}>Acessar</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Esqueci a senha</Text>
-            </TouchableOpacity>
-
-            
         </View>
     );
-}
+};
 
 export default FormLogin;

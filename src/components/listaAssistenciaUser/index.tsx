@@ -12,31 +12,36 @@ interface Jogador {
     assistencias_jogador: number;
 }
 
-const ListaArtilharia: React.FC<{ navigation: any }> = ({ navigation }) => {
-    // Estado para armazenar os dados dos jogadores
+const ListaAssistencia: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+    // Recuperando o id_login de route.params, igual na tela ListaArtilharia
+    const { id_login } = route.params;  // A chave 'id_login' deve ser a mesma que foi passada
+
+    console.log('id_login:', id_login);  // Verificação no console para confirmar se o id_login é recebido
+
     const [jogadores, setJogadores] = useState<Jogador[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
-    // Função para buscar os dados da API
     const fetchJogadores = async () => {
         try {
-            const response = await axios.get('http://192.168.255.212:3000/jogador'); //work192.168.1.219 home 192.168.0.10 roteador:192.168.255.212
+            // Usando o id_login para fazer a requisição
+            const response = await axios.get(`http://192.168.1.219:3000/jogador/porLogin/${id_login}`);
             setJogadores(response.data); // Armazena os dados no estado
         } catch (err) {
             setError('Erro ao carregar os dados');
             console.error(err);
         } finally {
-            setLoading(false); // Finaliza o carregamento
+            setLoading(false);
         }
     };
 
     // Usamos useEffect para buscar os dados assim que o componente for montado
     useEffect(() => {
-        fetchJogadores();
-    }, []);
+        if (id_login) {
+            fetchJogadores();  // Realiza a requisição apenas se id_login estiver presente
+        }
+    }, [id_login]);  // Recarregar os jogadores sempre que o id_login mudar
 
-    // Exibe a lista ou uma mensagem de erro ou carregamento
     if (loading) {
         return (
             <View style={styles.container}>
@@ -53,7 +58,7 @@ const ListaArtilharia: React.FC<{ navigation: any }> = ({ navigation }) => {
         );
     }
 
-    // Ordena os jogadores por gols
+    // Ordena os jogadores por assistências
     const jogadoresOrdenados = jogadores.sort((a, b) => b.assistencias_jogador - a.assistencias_jogador);
 
     // Renderiza a lista de jogadores
@@ -68,17 +73,17 @@ const ListaArtilharia: React.FC<{ navigation: any }> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Artilharia</Text>
+            <Text style={styles.title}>Assistências</Text>
             <FlatList
-                data={jogadoresOrdenados} // Lista ordenada por gols
+                data={jogadoresOrdenados} // Lista ordenada por assistências
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id_jogador}
             />
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('dadosTimeUser')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('dadosTimeUser', { id_login })}>
                 <Text style={styles.buttonText}>Voltar</Text>
             </TouchableOpacity>
         </View>
     );
 };
 
-export default ListaArtilharia;
+export default ListaAssistencia;

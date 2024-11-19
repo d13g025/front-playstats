@@ -8,36 +8,37 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start', // Alinha os itens no topo
         paddingHorizontal: 19,
         paddingVertical: 10, // Adiciona um pouco de espaço vertical
-        backgroundColor: '#212529',
-    },
-    logo:{
-        width: 60, // largura da imagem
-        height: 65, // altura da imagem
-        resizeMode: 'cover',
+        backgroundColor: '#415d43',
     },
     button1:{
-        marginTop: 95,
-        backgroundColor: '#006400',
-        borderRadius:10,
+        marginTop: 100,
+        backgroundColor: '#10451d',
+        borderRadius:15,
         width: 300,
         height: 65,
-        margin:23 
-    }, 
+        margin:23, 
+        borderWidth:2,
+        borderColor:'gold'
+    },
     button:{
         marginTop: 10,
-        backgroundColor: '#006400',
-        borderRadius:10,
+        backgroundColor: '#10451d',
+        borderRadius:15,
         width: 300,
         height: 65,
-        margin:23 
-    }, 
+        margin:23, 
+        borderWidth:2,
+        borderColor:'gold'
+    },
     buttonVoltar:{
         marginTop: 10,
-        backgroundColor: '#004b23',
-        borderRadius:10,
+        backgroundColor: '#014f86',
+        borderRadius:15,
         width: 300,
         height: 65,
-        margin:23 
+        margin:23,
+        borderWidth:2,
+        borderColor:'gold'
     }, 
     itemText:{
         color: 'white',
@@ -46,6 +47,12 @@ const styles = StyleSheet.create({
         marginTop: 17,
         borderColor:'white'
     },
-    
+    logo:{
+        width: 65, // largura da imagem
+        height: 80, // altura da imagem
+        marginHorizontal: 5, // Adiciona espaçamento horizontal entre os itens
+        resizeMode: 'cover',
+        alignSelf:'center'
+    },
 });
 export default styles;

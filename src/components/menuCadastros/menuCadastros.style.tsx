@@ -8,38 +8,51 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start', // Alinha os itens no topo
         paddingHorizontal: 19,
         paddingVertical: 10, // Adiciona um pouco de espaço vertical
-        backgroundColor: '#333533',
+        backgroundColor: '#10451d',
     },
     button1:{
-        marginTop: 120,
-        backgroundColor: '#2a9134',
+        marginTop: 100,
+        backgroundColor: '#4b7f52',
         borderRadius:15,
         width: 300,
         height: 65,
-        margin:23
+        margin:23, 
+        borderWidth:2,
+        borderColor:'gold'
     },
     button:{
         marginTop: 10,
-        backgroundColor: '#2a9134',
+        backgroundColor: '#4b7f52',
         borderRadius:15,
         width: 300,
         height: 65,
-        margin:23
+        margin:23, 
+        borderWidth:2,
+        borderColor:'gold'
     },
     buttonVoltar:{
         marginTop: 10,
-        backgroundColor: '#006400',
+        backgroundColor: '#000f81',
         borderRadius:15,
         width: 300,
         height: 65,
-        margin:23
-        
+        margin:23,
+        borderWidth:2,
+        borderColor:'gold'
     },  
     itemText:{
         color: 'white',
         textAlign: 'center',
-        fontSize: 18,
-        marginTop: 20
+        fontSize: 20,
+        marginTop: 15
+    },
+    logo:{
+        width: 65, // largura da imagem
+        height: 80, // altura da imagem
+        marginHorizontal: 5, // Adiciona espaçamento horizontal entre os itens
+        resizeMode: 'cover',
+        alignSelf:'center',
+        marginTop:35
     },
 });
 export default styles;

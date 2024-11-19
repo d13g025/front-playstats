@@ -9,7 +9,7 @@ interface OpcoesProps {
 
 const Perfil: React.FC<OpcoesProps> = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor: '#333533' }}>
+    <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 10, backgroundColor: '#10451d' }}>
       <MeuPerfil navigation={navigation} />
     </View>
   );

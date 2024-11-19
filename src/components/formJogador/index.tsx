@@ -1,46 +1,48 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, Platform, Alert } from 'react-native';
-import axios from 'axios'; // Para enviar os dados para o back
-import { Picker } from '@react-native-picker/picker'; // Importando o Picker para o Dropdown
+import { View, Text, TextInput, TouchableOpacity, Alert, Platform, Image } from 'react-native';
+import axios from 'axios';
+import { Picker } from '@react-native-picker/picker';
 import styles from './formJogador.style';
 
-const FormJogador: React.FC<{ navigation: any }> = ({ navigation }) => {
+const FormJogador: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+    
+    const { id_login } = route.params; // Recupera o id_login da navegação
+
     const [nome_jogador, setNome_jogador] = useState('');
     const [apelido_jogador, setApelido_jogador] = useState('');
-    const [posicao_jogador, setPosicao_jogador] = useState(''); // Estado para armazenar a posição selecionada
+    const [posicao_jogador, setPosicao_jogador] = useState('');
 
     const handleSave = async () => {
         // Validação dos campos
-        if (!nome_jogador || !apelido_jogador || !posicao_jogador) {
+        if (!nome_jogador || !apelido_jogador || !posicao_jogador || !id_login) {
             Alert.alert('Erro', 'Por favor, preencha todos os campos.');
             return;
         }
 
         try {
-            // Enviando os dados para a API (supondo que a API seja 'http://192.168.1.219:3000/jogador')
-            const response = await axios.post('http://192.168.255.212:3000/jogador', {//work 192.168.1.219 casa:192.168.0.10 rotiador:192.168.255.212
+            // Enviando os dados para a API
+            const response = await axios.post('http://192.168.1.219:3000/jogador', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
                 nome_jogador,
                 apelido_jogador,
-                posicao_jogador
+                posicao_jogador,
+                fk_login_id_login: id_login // Envia o id_login para o back-end
             });
 
-            // Mensagem de sucesso, caso os dados sejam enviados corretamente
-            Alert.alert('Sucesso', response.data.message); // Supondo que a resposta da API tenha uma mensagem
-            navigation.navigate('menuCadastros'); // Navega para a tela de opções do menu após sucesso
+            Alert.alert('Sucesso', response.data.message);
+            navigation.navigate('menuCadastros'); // Navega para a tela de menu
 
         } catch (error) {
-            // Tratamento de erro caso algo dê errado na requisição
             Alert.alert('Erro', 'Ocorreu um erro ao cadastrar o jogador. Tente novamente.');
             console.error(error);
         }
     };
 
     return (
-        <KeyboardAvoidingView 
-            style={styles.container} 
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'} // Ajuste para iOS
-            keyboardVerticalOffset={100} // Ajuste conforme necessário
-        >
+        <View style={styles.container}>
+            <Image
+            source={require('../assets/logo.png')}
+            style={styles.logo}
+            />
             <Text style={styles.title}>Cadastrar Jogadores</Text>
 
             <TextInput 
@@ -56,12 +58,10 @@ const FormJogador: React.FC<{ navigation: any }> = ({ navigation }) => {
                 placeholder="Digite o apelido do jogador"
             />
 
-            {/* Dropdown para seleção da posição */}
             <TouchableOpacity style={styles.picker}>
             <Picker
                 selectedValue={posicao_jogador}
-                onValueChange={(itemValue) => setPosicao_jogador(itemValue)} // Atualiza o estado com a posição selecionada
-                style={{color:'#8b8c89'}}
+                onValueChange={(itemValue) => setPosicao_jogador(itemValue)}
             >
                 <Picker.Item label="Selecione a posição" value="" />
                 <Picker.Item label="Goleiro" value="goleiro" />
@@ -72,19 +72,16 @@ const FormJogador: React.FC<{ navigation: any }> = ({ navigation }) => {
                 <Picker.Item label="Atacante" value="atacante" />
             </Picker>
             </TouchableOpacity>
-
-            {/* Botão para salvar o jogador */}
+            
             <TouchableOpacity style={styles.button} onPress={handleSave}>
                 <Text style={styles.buttonText}>Salvar</Text>
             </TouchableOpacity>
 
-            {/* Botão para voltar para a tela anterior */}
+            {/* Botão para voltar */}
             <TouchableOpacity style={styles.buttonVoltar} onPress={() => navigation.navigate('menuCadastros')}>
                 <Text style={styles.buttonText}>Voltar</Text>
             </TouchableOpacity>
-
-            {/* Logo da aplicação */}
-        </KeyboardAvoidingView>
+            </View>
     );
 };
 

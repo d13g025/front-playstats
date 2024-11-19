@@ -8,39 +8,51 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start', // Alinha os itens no topo
         paddingHorizontal: 19,
         paddingVertical: 10, // Adiciona um pouco de espaço vertical
-        backgroundColor: '#212529',
+        backgroundColor: '#10451d',
+    },
+    button1:{
+        marginTop: 100,
+        backgroundColor: '#4b7f52',
+        borderRadius:15,
+        width: 300,
+        height: 65,
+        margin:23, 
+        borderWidth:2,
+        borderColor:'gold'
     },
     button:{
         marginTop: 10,
-        backgroundColor: '#2a9134',
+        backgroundColor: '#4b7f52',
         borderRadius:15,
         width: 300,
         height: 65,
-        margin:23
-        
+        margin:23,
+        borderWidth:2,
+        borderColor:'gold'
     },
     buttonDesconectar:{
         marginTop: 10,
-        backgroundColor: '#006400',
+        backgroundColor: '#000f81',
         borderRadius:15,
         width: 300,
         height: 65,
-        margin:23
-        
+        margin:23,
+        borderWidth:2,
+        borderColor:'gold'
     },  
     itemText:{
         color: 'white',
         textAlign: 'center',
-        fontSize: 18,
+        fontSize: 20,
         marginTop: 15
     },
     logo:{
-        width: 190, // largura da imagem
-        height: 150, // altura da imagem
+        marginTop:35,
+        width: 65, // largura da imagem
+        height: 80, // altura da imagem
         marginHorizontal: 5, // Adiciona espaçamento horizontal entre os itens
         resizeMode: 'cover',
-        alignSelf:'center',
-        marginTop:30
-    }
+        alignSelf:'center'
+    },
 });
 export default styles;

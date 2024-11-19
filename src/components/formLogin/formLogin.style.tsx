@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     },
     logo:{
         width: 55, // largura da imagem
-        height: 65, // altura da imagem
+        height: 70, // altura da imagem
         resizeMode: 'cover',
     },
     input: {
@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
         marginVertical: 15, 
         paddingVertical: 10,
         paddingHorizontal: 15,
-        borderColor:'green',
-        borderWidth:3,
+        borderColor:'gold',
+        borderWidth:2,
         borderRadius:5,
         backgroundColor:'white'
     },
@@ -32,16 +32,19 @@ const styles = StyleSheet.create({
         
     },
     button:{
-        backgroundColor: '#006400',
+        backgroundColor: '#4b7f52',
         borderRadius:10,
-        width: 280,
-        height: 40,
-        margin:10
+        width: 293,
+        height: 50,
+        margin:10,
+        borderWidth:2,
+        borderColor:'gold'
     },
     buttonText:{
         color:'white',
         fontSize: 25,
         textAlign:'center',
+        marginTop:3
     },
     
 });

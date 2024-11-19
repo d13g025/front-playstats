@@ -19,36 +19,47 @@ const styles = StyleSheet.create({
         marginVertical: 10, 
         paddingVertical: 10,
         paddingHorizontal: 15,
-        borderColor:'green',
-        borderWidth:3,
+        borderColor:'gold',
+        borderWidth:2,
         borderRadius:5,
         backgroundColor:'white'
     },
     title:{
         
         alignSelf: 'center',
-        fontSize: 40,
+        fontSize: 30,
         fontWeight: 'normal',
         color: 'white'
     },
     button:{
-        backgroundColor: '#2a9134',
-        borderRadius:9,
-        width: 280,
-        height: 40,
-        marginTop:9,
+        backgroundColor: '#4b7f52',
+        borderRadius:10,
+        width: 293,
+        height: 50,
+        margin:10,
+        borderWidth:2,
+        borderColor:'gold'
     },
     buttonCancelar:{
-        backgroundColor: '#006400',
-        borderRadius:9,
-        width: 280,
-        height: 40,
-        marginTop:20,
+        backgroundColor: '#fdc500',
+        borderRadius:10,
+        width: 293,
+        height: 50,
+        margin:10,
+        borderWidth:1,
+        borderColor:'white'
     },
-    buttonText:{
+    buttonTextSalvar:{
         color:'white',
         fontSize: 25,
         textAlign:'center',
+        marginTop:3
+    },
+    buttonTextCancelar:{
+        color:'white',
+        fontSize: 25,
+        textAlign:'center',
+        marginTop:3
     },
 });
 

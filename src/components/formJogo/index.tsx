@@ -1,48 +1,64 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, Platform, FlatList, Alert } from 'react-native';
-import axios from 'axios'; // Para fazer requisições para a API
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, FlatList, Alert, Platform, KeyboardAvoidingView, Image } from 'react-native';
+import axios from 'axios';
 import styles from './formJogo.style';
 
-const FormJogo: React.FC<{ navigation: any }> = ({ navigation }) => {
-    const [nome_timeAdversario, setNome_timeAdversario] = useState('');
-    const [data_jogo, setdata_jogo] = useState('');
-    const [horario_jogo, sethorario_jogo] = useState('');
-    const [time_adversario, settime_adversario] = useState<any[]>([]); // Estado para armazenar os times retornados pela API
-    const [loading, setLoading] = useState(false); // Estado para controle de carregamento
+const FormJogo: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+    const { id_login } = route.params; // Recupera o id_login da navegação
+
+    const [fk_timeAdversario_id_timeAdversario, setIdTimeAdversario] = useState<number | null>(null); // Agora armazenamos o id do time
+    const [nome_timeAdversario, setNomeTimeAdversario] = useState(''); // Nome do time para exibição no campo de texto
+    const [data_jogo, setDataJogo] = useState('');
+    const [hora_jogo, setHoraJogo] = useState('');
+    const [time_adversario, setTimeAdversario] = useState<any[]>([]);
+    const [loading, setLoading] = useState(false);
 
     // Função para consultar os times adversários
-    const consultartime_adversario = async () => {
-        setLoading(true); // Ativa o estado de carregamento
+    const consultarTimeAdversario = async () => {
+        if (nome_timeAdversario.trim() === '') {
+            setTimeAdversario([]);
+            return;
+        }
+
+        setLoading(true);
         try {
-            // Passando o valor de nome_timeAdversario na URL da requisição
-            const response = await axios.get(`http://192.168.255.212:3000/timeAdversario/${nome_timeAdversario}`); //Rotiador:192.168.255.212
+            const response = await axios.get(`http://192.168.1.219:3000/buscarTimeAdversario?nome_timeAdversario=${nome_timeAdversario}`);
             
-            // Mapeando os dados para adicionar o método 'toString' em cada time
+            // Mapeia os dados para adicionar um 'toString' em cada time
             const timesComToString = response.data.map((time: any) => ({
                 ...time,
-                toString: `${time.nome_timeAdversario}`
+                toString: `${time.nome_timeAdversario}`,
             }));
-    
-            // Atualiza o estado com os dados dos times
-            settime_adversario(timesComToString); 
+
+            setTimeAdversario(timesComToString);
         } catch (error) {
-            Alert.alert('Erro', 'Ocorreu um erro ao consultar os times adversários. Tente novamente.');
+            Alert.alert('Erro', 'Erro ao consultar os times adversários');
             console.error(error);
         } finally {
-            setLoading(false); // Desativa o estado de carregamento
+            setLoading(false);
         }
     };
 
+    // Usar o useEffect para debouncing na consulta
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            consultarTimeAdversario();
+        }, 500); // Espera 500ms antes de fazer a requisição
+
+        return () => clearTimeout(timeoutId); // Limpa o timeout se o nome mudar
+    }, [nome_timeAdversario]);
+
     // Função para selecionar o time adversário
-    const selecionarTimeAdversario = (time: string) => {
-        setNome_timeAdversario(time); // Atualiza o campo de nome do time adversário com o time selecionado
-        settime_adversario([]); // Limpa a lista de times após a seleção
+    const selecionarTimeAdversario = (time: string, id: number) => {
+        setIdTimeAdversario(id); // Armazena o ID do time
+        setNomeTimeAdversario(time); // Atualiza o nome do time
+        setTimeAdversario([]); // Limpa a lista após a seleção
     };
 
-    // Função para salvar o jogo
+    // Função para salvar o jogo no banco de dados
     const salvarJogo = async () => {
         // Validação dos campos
-        if (!nome_timeAdversario || !data_jogo || !horario_jogo) {
+        if (!fk_timeAdversario_id_timeAdversario || !data_jogo || !hora_jogo || !id_login) {
             Alert.alert('Erro', 'Por favor, preencha todos os campos.');
             return;
         }
@@ -51,13 +67,15 @@ const FormJogo: React.FC<{ navigation: any }> = ({ navigation }) => {
             setLoading(true); // Ativa o estado de carregamento
 
             // Envia os dados do jogo para a API
-            const response = await axios.post('http://192.168.255.212:3000/jogo', { //work 192.168.1.219 home 192.168.0.10 roteador 192.168.255.212
+            const response = await axios.post('http://192.168.1.219:3000/jogo', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+                fk_timeAdversario_id_timeAdversario,  // Agora envia o id do time adversário
                 data_jogo,
-                horario_jogo
+                hora_jogo,
+                fk_login_id_login: id_login // Envia o id_login para o backend
             });
 
             // Exibe a mensagem de sucesso recebida da API
-            Alert.alert('Sucesso');
+            Alert.alert('Sucesso', 'Jogo salvo com sucesso!');
             navigation.navigate('menuCadastros'); // Navega para a tela de opções após salvar com sucesso
         } catch (error) {
             Alert.alert('Erro', 'Ocorreu um erro ao salvar o jogo. Tente novamente.');
@@ -71,60 +89,50 @@ const FormJogo: React.FC<{ navigation: any }> = ({ navigation }) => {
         <KeyboardAvoidingView 
             style={styles.container} 
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
-            keyboardVerticalOffset={100} 
+            keyboardVerticalOffset={100}
         >
+            <Image
+            source={require('../assets/logo.png')}
+            style={styles.logo}
+            />
             <Text style={styles.title}>Cadastrar Jogo</Text>
 
-            {/* Campo para nome do time adversário */}
-            
-
-            {/* Campos para data e horário do jogo */}
             <TextInput 
                 style={styles.input} 
-                onChangeText={setdata_jogo}
+                onChangeText={setDataJogo}
                 value={data_jogo}
                 placeholder="Digite a data do jogo. Ex: 25/02/2024"
             />
             <TextInput 
                 style={styles.input} 
-                onChangeText={sethorario_jogo}
-                value={horario_jogo}
+                onChangeText={setHoraJogo}
+                value={hora_jogo}
                 placeholder="Digite o horário do jogo"
             />
-
-<TextInput 
-                style={styles.input} 
-                onChangeText={setNome_timeAdversario}
-                value={nome_timeAdversario}
+            
+            <TextInput
+                style={styles.input}
                 placeholder="Digite o nome do time adversário"
+                onChangeText={setNomeTimeAdversario}
+                value={nome_timeAdversario}
             />
 
-            {/* Botão de consultar */}
-            <TouchableOpacity 
-                style={styles.button} 
-                onPress={consultartime_adversario}
-                disabled={loading} // Desativa o botão enquanto está carregando
-            >
-                <Text style={styles.buttonText}>{loading ? 'Consultando...' : 'Consultar'}</Text>
-            </TouchableOpacity>
-
-            {/* Exibição da lista de times adversários */}
             {time_adversario.length > 0 && (
                 <FlatList
-                    style={{width:'58%'}}
+                    style={{ width: '75%', marginLeft: 75 }}
                     data={time_adversario}
-                    keyExtractor={(item) => item.id_timeAdversario.toString()} // Usando o ID único do time
                     renderItem={({ item }) => (
                         <TouchableOpacity 
-                            style={styles.timeItem} 
-                            onPress={() => selecionarTimeAdversario(item.nome_timeAdversario)}
+                            style={styles.buttonTime} 
+                            onPress={() => selecionarTimeAdversario(item.nome_timeAdversario, item.id_timeAdversario)}
                         >
-                            {/* Exibindo o toString do time */}
-                            <Text style={styles.timeText}>{item.toString}</Text>
+                            <Text style={styles.buttonTextTime}>{item.toString}</Text>
                         </TouchableOpacity>
                     )}
+                    keyExtractor={(item) => item.id_timeAdversario.toString()} // Usando ID único
                 />
             )}
+
             {/* Botão de salvar */}
             <TouchableOpacity 
                 style={styles.button} 
@@ -138,7 +146,6 @@ const FormJogo: React.FC<{ navigation: any }> = ({ navigation }) => {
             <TouchableOpacity style={styles.buttonVoltar} onPress={() => navigation.navigate('menuCadastros')}>
                 <Text style={styles.buttonText}>Voltar</Text>
             </TouchableOpacity>
-
         </KeyboardAvoidingView>
     );
 };
