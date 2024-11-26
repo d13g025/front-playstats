@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-
 const styles = StyleSheet.create({
     container:{
         flex:1,
@@ -10,17 +9,6 @@ const styles = StyleSheet.create({
     input: {
         width: '80%',               // Largura percentual em relação ao pai
         maxWidth: 300,             // Limitar a largura máxima (opcional)
-        marginVertical: 10, 
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-        borderColor:'gold',
-        borderWidth:3,
-        borderRadius:5,
-        backgroundColor:'white'
-    },
-    inputPlacar: {
-        width: '80%',               // Largura percentual em relação ao pai
-        maxWidth: 70,             // Limitar a largura máxima (opcional)
         marginVertical: 10, 
         paddingVertical: 10,
         paddingHorizontal: 15,
@@ -75,7 +63,7 @@ const styles = StyleSheet.create({
         borderColor:'blue'
     },
     titleEdicao:{
-        marginTop:7,
+        marginTop:45,
         fontSize:20,
         color:'white',
         
@@ -87,17 +75,8 @@ const styles = StyleSheet.create({
        
     },
     text:{
-        fontSize:15,
-        color:'black',  
-    },
-    picker: {  
-        width: '80%',               // Largura percentual em relação ao pai
-        maxWidth: 300,             // Limitar a largura máxima (opcional)
-        marginVertical: 10, 
-        borderColor:'gold',
-        borderWidth:3,
-        borderRadius:5,
-        backgroundColor:'white'
-      },
+        fontSize:20,
+        color:'white',  
+    }
 })
 export default styles;

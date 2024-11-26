@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import FormJogador from '../components/formJogador/index';
+import FormJogador from 'components/formJogador/index';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 

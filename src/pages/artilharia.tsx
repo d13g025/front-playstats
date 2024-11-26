@@ -2,8 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
-import ListaArtilharia from '../components/listaArtilharia';
-import MenuArtilhariaAssistencia from '../components/menuArtilhariaAssistencia';
+import ListaArtilharia from 'components/listaArtilharia';
+import MenuArtilhariaAssistencia from 'components/menuArtilhariaAssistencia';
 
 interface HomeProps {
   navigation: NativeStackNavigationProp<any>;

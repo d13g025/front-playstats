@@ -1,6 +1,6 @@
 import  {View} from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import EstatisticasJogos from '../components/estatisticasJogos';
+import EstatisticasJogos from 'components/estatisticasJogos';
 
 interface HomeProps {
     navigation: NativeStackNavigationProp<any>;

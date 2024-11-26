@@ -1,6 +1,6 @@
 import  {View} from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import MenuCadastros from '../components/menuCadastros';
+import MenuCadastros from 'components/menuCadastros';
 
 
 interface HomeProps {

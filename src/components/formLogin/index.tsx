@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
-import { useAuth } from '../context/AuthContext';  // Importe o hook useAuth
+import { useAuth } from 'components/context/AuthContext';
 import styles from './formLogin.style';
 
 const FormLogin: React.FC<{ navigation: any }> = ({ navigation }) => {
@@ -15,7 +15,7 @@ const FormLogin: React.FC<{ navigation: any }> = ({ navigation }) => {
         }
 
         try {
-            const response = await fetch('http://192.168.1.219:3000/autentica', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+            const response = await fetch('http://192.168.0.9:3000/autentica', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

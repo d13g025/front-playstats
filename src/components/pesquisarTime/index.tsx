@@ -7,7 +7,6 @@ const PesquisarTime: React.FC<{ navigation: any }> = ({ navigation }) => {
     const [nome_timePrincipal, setNome_timePrincipal] = useState('');
     const [timesEncontrados, setTimesEncontrados] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-
     // Função para buscar os times na API
     const buscarTimes = async (nome: string) => {
         if (nome.trim() === '') {
@@ -17,7 +16,7 @@ const PesquisarTime: React.FC<{ navigation: any }> = ({ navigation }) => {
 
         setIsLoading(true);
         try {
-            const response = await axios.get(`http://192.168.1.219:3000/buscarTime?nome=${nome}`);
+            const response = await axios.get(`http://192.168.0.9:3000/buscarTime?nome=${nome}`);
             
             if (response.data.success) {
                 setTimesEncontrados(response.data.times);  // Agora setamos `times` diretamente
@@ -71,7 +70,7 @@ const PesquisarTime: React.FC<{ navigation: any }> = ({ navigation }) => {
                                     <TouchableOpacity
                                         onPress={() => {
                                             // Passando o id_login correto para a próxima tela
-                                            navigation.navigate('dadosTimeUser', { id_login: id_login });
+                                            navigation.navigate('dadosTimeUser', {id_login });
                                         }}
                                         style={styles.buttonTime}
                                     >
@@ -80,6 +79,7 @@ const PesquisarTime: React.FC<{ navigation: any }> = ({ navigation }) => {
                                 );
                             }}
                             keyExtractor={(item) => item.id_login.toString()}
+                            
                         />
                     )}
                 </>

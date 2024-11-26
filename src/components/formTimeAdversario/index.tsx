@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, Platform, Image,KeyboardAvoidingView } from 'react-native';
+import {Text, TextInput, TouchableOpacity, Alert, Platform, Image,KeyboardAvoidingView } from 'react-native';
 import axios from 'axios';
 import styles from './formTimeA.style';
+import { useAuth } from 'components/context/AuthContext';
 
 const FormTimeAdversario: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
-    // Acessando o id_login passado por parâmetros via navegação
-    const { id_login } = route.params; 
+    const { id_login } = useAuth();  
 
     const [nome_timeAdversario, setNome_timeAdversario] = useState('');
     const [endereco_timeAdversario, setEndereco_timeAdversario] = useState('');
@@ -19,7 +19,7 @@ const FormTimeAdversario: React.FC<{ navigation: any, route: any }> = ({ navigat
 
         try {
             // Enviando os dados para a API (supondo que a API seja 'http://192.168.1.219:3000/timeadversario')
-            const response = await axios.post('http://192.168.1.219:3000/timeadversario', {
+            const response = await axios.post('http://192.168.0.9:3000/timeadversario', {
                 nome_timeAdversario,
                 endereco_timeAdversario,
                 fk_login_id_login: id_login // Envia o id_login para o back-end

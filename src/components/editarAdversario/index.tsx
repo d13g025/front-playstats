@@ -23,7 +23,7 @@ const EditarAdversario: React.FC<{ route: any, navigation: any }> = ({ route, na
     
         const fetchAdversario = async () => {
             try {
-                const response = await axios.get(`http://192.168.1.219:3000/timeAdversario/${id_timeAdversario}`);
+                const response = await axios.get(`http://192.168.0.13:3000/timeAdversario/${id_timeAdversario}`);
                 const data = response.data;
     
                 console.log('Dados do time adversário:', data);  // Verificando os dados retornados pela API
@@ -49,7 +49,7 @@ const EditarAdversario: React.FC<{ route: any, navigation: any }> = ({ route, na
     // Função para salvar as alterações
     const salvarAlteracoes = async () => {
         try {
-            const response = await axios.patch(`http://192.168.1.219:3000/timeAdversario/${id_timeAdversario}`, {
+            const response = await axios.patch(`http://192.168.0.9:3000/timeAdversario/${id_timeAdversario}`, {
                 nome_timeAdversario: nome_timeAdversario,
                 endereco_timeAdversario: endereco_timeAdversario,
             });

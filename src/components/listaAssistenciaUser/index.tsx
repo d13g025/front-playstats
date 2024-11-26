@@ -15,7 +15,6 @@ interface Jogador {
 const ListaAssistencia: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
     // Recuperando o id_login de route.params, igual na tela ListaArtilharia
     const { id_login } = route.params;  // A chave 'id_login' deve ser a mesma que foi passada
-
     console.log('id_login:', id_login);  // Verificação no console para confirmar se o id_login é recebido
 
     const [jogadores, setJogadores] = useState<Jogador[]>([]);
@@ -25,7 +24,7 @@ const ListaAssistencia: React.FC<{ navigation: any, route: any }> = ({ navigatio
     const fetchJogadores = async () => {
         try {
             // Usando o id_login para fazer a requisição
-            const response = await axios.get(`http://192.168.1.219:3000/jogador/porLogin/${id_login}`);
+            const response = await axios.get(`http://192.168.0.9:3000/jogador/porLogin/${id_login}`);
             setJogadores(response.data); // Armazena os dados no estado
         } catch (err) {
             setError('Erro ao carregar os dados');

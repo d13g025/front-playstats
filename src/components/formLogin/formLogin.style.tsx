@@ -7,9 +7,12 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     logo:{
-        width: 55, // largura da imagem
-        height: 70, // altura da imagem
+        width: 65, // largura da imagem
+        height: 80, // altura da imagem
+        marginHorizontal: 5, // Adiciona espaçamento horizontal entre os itens
         resizeMode: 'cover',
+        alignSelf:'center',
+        marginTop:35
     },
     input: {
 

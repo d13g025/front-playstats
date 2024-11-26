@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, FlatList, Alert, Platform, KeyboardAvoidingView, Image } from 'react-native';
+import {Text, TextInput, TouchableOpacity, FlatList, Alert, Platform, KeyboardAvoidingView, Image} from 'react-native';
 import axios from 'axios';
 import styles from './formJogo.style';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { useAuth } from 'components/context/AuthContext';
 
 const FormJogo: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
-    const { id_login } = route.params; // Recupera o id_login da navegação
+    const { id_login } = useAuth(); 
 
     const [fk_timeAdversario_id_timeAdversario, setIdTimeAdversario] = useState<number | null>(null); // Agora armazenamos o id do time
     const [nome_timeAdversario, setNomeTimeAdversario] = useState(''); // Nome do time para exibição no campo de texto
-    const [data_jogo, setDataJogo] = useState('');
+    const [data_jogo, setDataJogo] = useState<Date | null>(null); // Agora armazenamos o objeto Date
     const [hora_jogo, setHoraJogo] = useState('');
     const [time_adversario, setTimeAdversario] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
+    const [show, setShow] = useState(false); // Estado para controlar o modal do DateTimePicker
+    const [date, setDate] = useState(new Date()); // Estado para armazenar a data selecionada
 
     // Função para consultar os times adversários
     const consultarTimeAdversario = async () => {
@@ -19,17 +23,19 @@ const FormJogo: React.FC<{ navigation: any, route: any }> = ({ navigation, route
             setTimeAdversario([]);
             return;
         }
-
+    
         setLoading(true);
         try {
-            const response = await axios.get(`http://192.168.1.219:3000/buscarTimeAdversario?nome_timeAdversario=${nome_timeAdversario}`);
+            const response = await axios.get(
+                `http://192.168.0.9:3000/buscarTimeAdversario?nome_timeAdversario=${nome_timeAdversario}&fk_login_id_login=${id_login}`
+            );
             
             // Mapeia os dados para adicionar um 'toString' em cada time
             const timesComToString = response.data.map((time: any) => ({
                 ...time,
                 toString: `${time.nome_timeAdversario}`,
             }));
-
+    
             setTimeAdversario(timesComToString);
         } catch (error) {
             Alert.alert('Erro', 'Erro ao consultar os times adversários');
@@ -66,10 +72,13 @@ const FormJogo: React.FC<{ navigation: any, route: any }> = ({ navigation, route
         try {
             setLoading(true); // Ativa o estado de carregamento
 
+            // Formatar a data no formato ISO para enviar para o backend
+            const formattedDataJogo = data_jogo.toISOString(); // Converte o objeto Date para o formato ISO
+
             // Envia os dados do jogo para a API
-            const response = await axios.post('http://192.168.1.219:3000/jogo', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+            const response = await axios.post('http://192.168.0.9:3000/jogo', {
                 fk_timeAdversario_id_timeAdversario,  // Agora envia o id do time adversário
-                data_jogo,
+                data_jogo: formattedDataJogo, // Envia a data no formato ISO
                 hora_jogo,
                 fk_login_id_login: id_login // Envia o id_login para o backend
             });
@@ -85,31 +94,48 @@ const FormJogo: React.FC<{ navigation: any, route: any }> = ({ navigation, route
         }
     };
 
+    // Função que será chamada quando a data for selecionada no DateTimePicker
+    const onChange = (event: any, selectedDate: Date | undefined) => {
+        const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios' ? true : false); // Para iOS, mantém o DateTimePicker aberto após a seleção
+        setDate(currentDate);
+        setDataJogo(currentDate); // Armazenando o objeto Date diretamente
+    };
+
     return (
         <KeyboardAvoidingView 
             style={styles.container} 
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
             keyboardVerticalOffset={100}
         >
+            
             <Image
-            source={require('../assets/logo.png')}
-            style={styles.logo}
+                source={require('../assets/logo.png')}
+                style={styles.logo}
             />
             <Text style={styles.title}>Cadastrar Jogo</Text>
 
-            <TextInput 
-                style={styles.input} 
-                onChangeText={setDataJogo}
-                value={data_jogo}
-                placeholder="Digite a data do jogo. Ex: 25/02/2024"
-            />
+            <TouchableOpacity onPress={() => setShow(true)} style={styles.input}>
+                <Text>{data_jogo ? data_jogo.toLocaleDateString() : 'Selecionar data'}</Text>
+            </TouchableOpacity>
+
+            {show && (
+                <DateTimePicker
+                    testID="dateTimePicker"
+                    value={date}
+                    mode="date"
+                    display="calendar"
+                    onChange={onChange}
+                />
+            )}
+
             <TextInput 
                 style={styles.input} 
                 onChangeText={setHoraJogo}
                 value={hora_jogo}
                 placeholder="Digite o horário do jogo"
             />
-            
+
             <TextInput
                 style={styles.input}
                 placeholder="Digite o nome do time adversário"
@@ -133,7 +159,6 @@ const FormJogo: React.FC<{ navigation: any, route: any }> = ({ navigation, route
                 />
             )}
 
-            {/* Botão de salvar */}
             <TouchableOpacity 
                 style={styles.button} 
                 onPress={salvarJogo}
@@ -142,7 +167,6 @@ const FormJogo: React.FC<{ navigation: any, route: any }> = ({ navigation, route
                 <Text style={styles.buttonText}>{loading ? 'Salvando...' : 'Salvar'}</Text>
             </TouchableOpacity>
 
-            {/* Botão de voltar */}
             <TouchableOpacity style={styles.buttonVoltar} onPress={() => navigation.navigate('menuCadastros')}>
                 <Text style={styles.buttonText}>Voltar</Text>
             </TouchableOpacity>

@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
         height: 80, // altura da imagem
         marginHorizontal: 5, // Adiciona espaçamento horizontal entre os itens
         resizeMode: 'cover',
-        alignSelf:'center'
+        alignSelf:'center',
+        marginTop:35
     },
 });
 export default styles;

@@ -5,18 +5,18 @@ const styles = StyleSheet.create({
         flex:1,
         width: 900,
         alignItems: 'center',
-        backgroundColor: '#415d43'
+        backgroundColor: '#10451d'
     },
     title:{
         color: 'white',
         fontSize:25,
         borderBottomWidth: 5,
         borderBottomColor: 'gold',
-        marginTop:10
+        marginTop:25
     },
     button:{
         marginTop: 10,
-        backgroundColor: '#014f86',
+        backgroundColor: '#000f81',
         borderRadius:15,
         width: 300,
         height: 60,

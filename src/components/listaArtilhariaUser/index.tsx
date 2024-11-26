@@ -16,7 +16,9 @@ const ListaArtilharia: React.FC<{ navigation: any, route: any }> = ({ navigation
     // Usando 'id_login' ou 'fk_login_id_login' conforme o nome que você passou nas rotas
     const { id_login } = route.params;  // ou fk_login_id_login dependendo do nome usado
     console.log('id_login:', id_login);
-
+    useEffect(() => {
+        console.log(route.params);  // Verifique os parâmetros passados
+      }, []);
     const [jogadores, setJogadores] = useState<Jogador[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -24,7 +26,7 @@ const ListaArtilharia: React.FC<{ navigation: any, route: any }> = ({ navigation
     const fetchJogadores = async () => {
         try {
             // Usando o id_login na URL da requisição
-            const response = await axios.get(`http://192.168.1.219:3000/jogador/porLogin/${id_login}`);
+            const response = await axios.get(`http://192.168.0.9:3000/jogador/porLogin/${id_login}`);
             setJogadores(response.data); // Armazena os dados no estado
         } catch (err) {
             setError('Erro ao carregar os dados');

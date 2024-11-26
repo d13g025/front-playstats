@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import MeuPerfil from '../components/meuPerfil';
+import MeuPerfil from 'components/meuPerfil';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface OpcoesProps {
@@ -16,3 +16,4 @@ const Perfil: React.FC<OpcoesProps> = ({ navigation }) => {
 };
 
 export default Perfil;
+

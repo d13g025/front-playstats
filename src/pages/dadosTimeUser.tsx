@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import MenuDadosTimeUser from '../components/menuDadosTimeUser';
+import MenuDadosTimeUser from 'components/menuDadosTimeUser';
 
 interface OpcoesProps {
   navigation: NativeStackNavigationProp<any>;

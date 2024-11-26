@@ -1,6 +1,6 @@
 import  {View} from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import MenuDesempenhos from '../components/menuDesempenhos';
+import MenuDesempenhos from 'components/menuDesempenhos';
 
 
 interface HomeProps {

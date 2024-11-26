@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
+import { Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
 import styles from './formCadastro.style';
 import axios from 'axios'; // Para enviar os dados para o back
 
@@ -20,7 +20,7 @@ const FormCadastro: React.FC<{ navigation: any }> = ({ navigation }) => {
         } else {
             try {
                 // Enviar todos os dados para a API /timePrincipal para cadastro completo
-                const responseTime = await axios.post('http://192.168.1.219:3000/login', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+                const responseTime = await axios.post('http://192.168.0.9:3000/login', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
                     nome_timePrincipal,
                     endereco_timePrincipal,
                     email,

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, Platform, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
 import axios from 'axios';
 import { Picker } from '@react-native-picker/picker';
 import styles from './formJogador.style';
+import { useAuth } from 'components/context/AuthContext';
 
 const FormJogador: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
     
-    const { id_login } = route.params; // Recupera o id_login da navegação
+    const { id_login } = useAuth();  
 
     const [nome_jogador, setNome_jogador] = useState('');
     const [apelido_jogador, setApelido_jogador] = useState('');
@@ -21,7 +22,7 @@ const FormJogador: React.FC<{ navigation: any, route: any }> = ({ navigation, ro
 
         try {
             // Enviando os dados para a API
-            const response = await axios.post('http://192.168.1.219:3000/jogador', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+            const response = await axios.post('http://192.168.0.9:3000/jogador', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
                 nome_jogador,
                 apelido_jogador,
                 posicao_jogador,

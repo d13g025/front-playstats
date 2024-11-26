@@ -1,5 +1,5 @@
 import  {View} from 'react-native';
-import FormCadastro from '../components/formCadastro/index';
+import FormCadastro from 'components/formCadastro';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 

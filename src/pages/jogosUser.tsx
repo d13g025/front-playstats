@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
-import ListaJogosUser from '../components/listaJogosUser';
+import ListaJogosUser from 'components/listaJogosUser';
 
 interface HomeProps {
   navigation: NativeStackNavigationProp<any>;

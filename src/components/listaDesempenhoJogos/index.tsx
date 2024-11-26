@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
 import axios from 'axios';
 import styles from './listaDesempenhoJogos.style';
+import { useAuth } from 'components/context/AuthContext';
 
 interface Jogo {
     id_jogo: number;
@@ -16,8 +17,8 @@ interface Jogo {
     endereco_timeAdversario: string;  // Agora inclui o endereço do time adversário
 }
 
-const ListaDesempenhoJogos: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
-    const { id_login } = route.params; // Recupera o id_login da navegação
+const ListaDesempenhoJogos: React.FC<{ navigation: any, route: any }> = ({ navigation }) => {
+    const { id_login } = useAuth(); 
     const [jogos, setJogos] = useState<Jogo[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -25,14 +26,14 @@ const ListaDesempenhoJogos: React.FC<{ navigation: any, route: any }> = ({ navig
     // Função para buscar todos os jogos associados ao id_login
     const fetchJogos = async () => {
         try {
-            const response = await axios.get(`http://192.168.1.219:3000/jogo/porLogin/${id_login}`);
+            const response = await axios.get(`http://192.168.0.9:3000/jogo/porLogin/${id_login}`);
             const jogosData = response.data;
 
             // Buscar detalhes completos de cada jogo (nome_timePrincipal, nome_timeAdversario, endereco_timeAdversario)
             const jogosComDetalhes = await Promise.all(
                 jogosData.map(async (jogo: Jogo) => {
                     try {
-                        const jogoDetalhado = await axios.get(`http://192.168.1.219:3000/jogo/tpEta/${jogo.id_jogo}`);
+                        const jogoDetalhado = await axios.get(`http://192.168.0.9:3000/jogo/tpEta/${jogo.id_jogo}`);
                         return {
                             ...jogo,
                             nome_timePrincipal: jogoDetalhado.data.nome_time_principal,
@@ -86,7 +87,7 @@ const ListaDesempenhoJogos: React.FC<{ navigation: any, route: any }> = ({ navig
 
     const handleDelete = async (id_jogo: number) => {
         try {
-            const response = await axios.delete(`http://192.168.1.219:3000/jogo/${id_jogo}`);
+            const response = await axios.delete(`http://192.168.0.9:3000/jogo/${id_jogo}`);
             if (response.status === 200) {
                 Alert.alert('Sucesso', 'Jogo excluído com sucesso!');
                 fetchJogos();  // Recarregar a lista após a exclusão
@@ -115,7 +116,7 @@ const ListaDesempenhoJogos: React.FC<{ navigation: any, route: any }> = ({ navig
         );
     }
 
-    const orderedJogos = jogos.sort((a, b) => new Date(a.data_jogo).getTime() - new Date(b.data_jogo).getTime());
+    const orderedJogos = jogos.sort((a, b) => new Date(b.data_jogo).getTime() - new Date(a.data_jogo).getTime());
 
     const renderItem = ({ item }: { item: Jogo }) => (
         <View style={styles.item}>

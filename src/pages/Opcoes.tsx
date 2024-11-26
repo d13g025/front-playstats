@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import MenuOpcoes from '../components/menuOpcoes/index';
+import MenuOpcoes from 'components/menuOpcoes';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface OpcoesProps {

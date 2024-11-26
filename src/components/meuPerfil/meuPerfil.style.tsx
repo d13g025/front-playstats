@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10, // Adiciona um pouco de espaço vertical
         backgroundColor: '#10451d',
     },
-    button:{
+    buttonEditar:{
         marginTop: 170,
         backgroundColor: '#4b7f52',
         borderRadius:15,
@@ -19,8 +19,18 @@ const styles = StyleSheet.create({
         margin:23,
         borderWidth:2,
         borderColor:'gold' 
-    }, 
-    button1:{
+    },
+    buttonExcluir:{
+        marginTop: 5,
+        backgroundColor: '#4b7f52',
+        borderRadius:15,
+        width: 300,
+        height: 65,
+        margin:23,
+        borderWidth:2,
+        borderColor:'gold' 
+    },
+    buttonVoltar:{
         marginTop: 5,
         backgroundColor: '#000f81',
         borderRadius:15,
@@ -37,6 +47,12 @@ const styles = StyleSheet.create({
         marginTop: 15
     },
     textButtonVoltar:{
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 20,
+        marginTop: 15
+    },
+    textButtonExcluir:{
         color: 'white',
         textAlign: 'center',
         fontSize: 20,

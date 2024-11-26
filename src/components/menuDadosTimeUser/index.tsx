@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';  // Importando useRoute
-import { RootStackParamList } from '../types/navigation';  // Importando o tipo de parâmetros de navegação
+import { RootStackParamList } from 'components/types/navigation';
 import { RouteProp } from '@react-navigation/native';  // Importando RouteProp
 import styles from './formDadosTimeUser.style';
 
@@ -28,11 +28,11 @@ const MenuDadosTimeUser: React.FC<{ navigation: any }> = ({ navigation }) => {
       <Image source={require('../assets/logo.png')} style={styles.logo} />
 
       <TouchableOpacity
-        style={styles.button1}
-        onPress={() => navigation.navigate('listaArtilhariaUser', { id_login })}
+      style={styles.button1}
+      onPress={() => navigation.navigate('listaArtilhariaUser', { id_login })}
       >
-        <Text style={styles.itemText}>Lista de Artilharia e assistências</Text>
-      </TouchableOpacity>
+      <Text style={styles.itemText}>Lista de Artilharia e assistências</Text>
+      </TouchableOpacity> 
 
       <TouchableOpacity
         style={styles.button}

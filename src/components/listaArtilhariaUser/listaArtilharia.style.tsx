@@ -51,6 +51,12 @@ const styles = StyleSheet.create({
         width:28,
         textAlign:'center',
         alignSelf:'flex-end'
-    }
+    },
+    iconContainer: {
+        marginRight: 16,  // Espaço entre o ícone e o texto
+      },
+      iconText: {
+        marginLeft: 10,  // Espaço após o ícone
+      },
 })
 export default styles;

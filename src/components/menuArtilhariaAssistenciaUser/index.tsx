@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useRoute } from '@react-navigation/native';  // Importando useRoute
-import { RootStackParamList } from '../types/navigation';  // Importando o tipo de parâmetros de navegação
+import { RootStackParamList } from 'components/types/navigation';
 import { RouteProp } from '@react-navigation/native';  // Importando RouteProp
 import styles from './menuArtilhariaAssistenciaUser.style';
 
@@ -25,7 +25,7 @@ const MenuArtilhariaAssistenciaUser: React.FC<{ navigation: any }> = ({ navigati
 
   return (
     <View style={styles.container}>
-      {/* Botão para a tela de Artilharia, passando o id_login */}
+      
       <TouchableOpacity 
         style={styles.buttonMenu} 
         onPress={() => navigation.navigate('listaArtilhariaUser', { id_login })}  // Passa o id_login para a próxima tela
@@ -33,7 +33,6 @@ const MenuArtilhariaAssistenciaUser: React.FC<{ navigation: any }> = ({ navigati
         <Text style={styles.buttonMenuText}>Artilharia</Text>
       </TouchableOpacity>
 
-      {/* Botão para a tela de Assistências, passando o id_login */}
       <TouchableOpacity 
         style={styles.buttonMenu}
         onPress={() => navigation.navigate('listaAssistenciaUser', { id_login })}  // Passa o id_login para a próxima tela

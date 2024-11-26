@@ -4,18 +4,20 @@ import axios from 'axios'; // Biblioteca para fazer requisições HTTP
 import styles from './listaJogosUser.style';
 
 interface Jogo {
-  id_jogo: string;
-  pk_login_id_login: string;
-  placar_jogo: string;
-  pk_timeAdversario_id_timeAdversario: string;
+  id_jogo: number;
+  id_login: number;
+  id_timeAdversario: number;
+  data_jogo: string;
+  hora_jogo: string;
   vencedor_jogo: string;
+  placar_jogo: string;
   nome_timeAdversario: string;
-  nome_timePrincipal: string;
-  endereco_timeAdversario: string;
+  nome_timePrincipal: string;  // Agora inclui o nome do time principal
+  endereco_timeAdversario: string;  // Agora inclui o endereço do time adversário
 }
 
-const ListaJogos: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
-  const { id_login } = route.params;  // Recupera o id_login da navegação
+const ListaJogosUser: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+  const { id_login } = route.params; // Recupera o id_login da navegação
 
   const [jogos, setJogos] = useState<Jogo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -25,14 +27,14 @@ const ListaJogos: React.FC<{ navigation: any, route: any }> = ({ navigation, rou
   const fetchJogos = async () => {
     try {
       // Usando o id_login na URL da requisição
-      const response = await axios.get(`http://192.168.1.219:3000/jogo/porLogin/${id_login}`);
+      const response = await axios.get(`http://192.168.0.9:3000/jogo/porLogin/${id_login}`);
       const jogosData = response.data;
 
       // Buscar detalhes completos de cada jogo (nome_timePrincipal, nome_timeAdversario, endereco_timeAdversario)
       const jogosComDetalhes = await Promise.all(
         jogosData.map(async (jogo: Jogo) => {
           try {
-            const jogoDetalhado = await axios.get(`http://192.168.1.219:3000/jogo/tpEta/${jogo.id_jogo}`);
+            const jogoDetalhado = await axios.get(`http://192.168.0.9:3000/jogo/tpEta/${jogo.id_jogo}`);
             return {
               ...jogo,
               nome_timePrincipal: jogoDetalhado.data.nome_time_principal,
@@ -56,10 +58,10 @@ const ListaJogos: React.FC<{ navigation: any, route: any }> = ({ navigation, rou
   };
 
   useEffect(() => {
-    fetchJogos(); // Recarrega os dados ao montar o componente
-  }, [id_login]);  // Recarregar sempre que id_login mudar
+    fetchJogos();
+  }, [id_login]);
 
-  // Exibe a lista ou uma mensagem de erro ou carregamento
+  // Exibe uma mensagem de carregamento ou erro, caso necessário
   if (loading) {
     return (
       <View style={styles.container}>
@@ -76,17 +78,19 @@ const ListaJogos: React.FC<{ navigation: any, route: any }> = ({ navigation, rou
     );
   }
 
-  // Ordena os jogos pela data de jogo (caso seja necessário, ajustando conforme a API)
-  const orderedJogos = jogos.sort((a, b) => new Date(a.pk_login_id_login).getTime() - new Date(b.pk_timeAdversario_id_timeAdversario).getTime());
+  // Ordena os jogos pela data de jogo
+  const orderedJogos = jogos.sort((a, b) => new Date(b.data_jogo).getTime() - new Date(a.data_jogo).getTime());
 
   const renderItem = ({ item }: { item: Jogo }) => (
     <View style={styles.item}>
-    <Text style={styles.text}>Time Principal: {item.nome_timePrincipal || 'Não disponível'}</Text>
-    <Text style={styles.text}>Time Adversário: {item.nome_timeAdversario || 'Não disponível'}</Text>
-    <Text style={styles.text}>Placar: {item.placar_jogo}</Text>
-    <Text style={styles.text}>Vencedor: {item.vencedor_jogo}</Text>
-    <Text style={styles.text}>Endereço do Adversário: {item.endereco_timeAdversario || 'Não disponível'}</Text>
-  </View>
+      <Text style={styles.text}>Time Principal: {item.nome_timePrincipal || 'Não disponível'}</Text>
+      <Text style={styles.text}>Time Adversário: {item.nome_timeAdversario || 'Não disponível'}</Text>
+      <Text style={styles.text}>Endereço do Adversário: {item.endereco_timeAdversario || 'Não disponível'}</Text>
+      <Text style={styles.text}>Data jogo: {item.data_jogo || 'Não disponível'}</Text>
+      <Text style={styles.text}>Hora jogo: {item.hora_jogo || 'Não disponível'}</Text>
+      <Text style={styles.text}>Placar: {item.placar_jogo}</Text>
+      <Text style={styles.text}>Vencedor: {item.vencedor_jogo}</Text>
+    </View>
   );
 
   return (
@@ -95,13 +99,13 @@ const ListaJogos: React.FC<{ navigation: any, route: any }> = ({ navigation, rou
       <FlatList
         data={orderedJogos} // Lista de jogos ordenada
         renderItem={renderItem}
-        keyExtractor={(item) => item.id_jogo}
+        keyExtractor={(item) => item.id_jogo.toString()}
       />
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('dadosTimeUser', { id_login })}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('dadosTimeUser',{id_login})}>
         <Text style={styles.buttonText}>Voltar</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default ListaJogos;
+export default ListaJogosUser;

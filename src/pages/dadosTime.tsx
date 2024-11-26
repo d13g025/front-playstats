@@ -2,7 +2,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import FormDadosTime from '../components/menuDadostime';
+import FormDadosTime from 'components/menuDadostime';
 
 interface OpcoesProps {
   navigation: NativeStackNavigationProp<any>;

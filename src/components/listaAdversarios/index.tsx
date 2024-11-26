@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
 import axios from 'axios';
 import styles from './listaAdversarios.style';
+import { useAuth } from 'components/context/AuthContext';
 
 interface Adversario {
     id_login: number;
@@ -11,15 +12,8 @@ interface Adversario {
 }
 
 const ListaAdversarios: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
-    const { id_login } = route.params; // Recupera o id_login da navegação
+    const { id_login } = useAuth();  
     console.log('fk_login_id_login:', id_login); // Verifique o valor
-
-    const loginId = parseInt(id_login, 10);
-
-    if (isNaN(loginId)) {
-        Alert.alert('Erro', 'ID de login inválido');
-        return null;  // Retorna null para evitar carregar a tela
-    }
 
     // Estado para armazenar os dados dos adversários
     const [adversarios, setAdversarios] = useState<Adversario[]>([]);
@@ -30,7 +24,7 @@ const ListaAdversarios: React.FC<{ navigation: any, route: any }> = ({ navigatio
     const fetchAdversarios = async () => {
         try {
             // Usando o id_login na URL da requisição
-            const response = await axios.get(`http://192.168.1.219:3000/timeAdversario/porLogin/${id_login}`); 
+            const response = await axios.get(`http://192.168.0.9:3000/timeAdversario/porLogin/${id_login}`); 
             setAdversarios(response.data); // Armazena os dados no estado
         } catch (err) {
             setError('Erro ao carregar os dados');
@@ -78,7 +72,7 @@ const ListaAdversarios: React.FC<{ navigation: any, route: any }> = ({ navigatio
     // Função para deletar adversário
     const handleDelete = async (id_timeAdversario: number) => {
         try {
-            const response = await axios.delete(`http://192.168.1.219:3000/timeAdversario/${id_timeAdversario}`);
+            const response = await axios.delete(`http://192.168.0.9:3000/timeAdversario/${id_timeAdversario}`);
             if (response.status === 200) {
                 Alert.alert('Sucesso', 'Time adversário excluído com sucesso!');
                 fetchAdversarios(); // Recarrega a lista de adversários após a exclusão

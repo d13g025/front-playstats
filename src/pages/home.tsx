@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import Menu from '../components/menu/index';
-import PesquisarTime from '../components/pesquisarTime/index';
+import PesquisarTime from 'components/pesquisarTime';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface HomeProps {

@@ -8,7 +8,8 @@ const EditarDesempenhoJogos: React.FC<{ route: any, navigation: any }> = ({ rout
     const { id_jogo } = route.params;  // Acessando o id do jogo passado como parâmetro
 
     const [jogo, setJogo] = useState<any>(null);  // Para armazenar os dados do jogo
-    const [placar_jogo, setPlacar_jogo] = useState<string>('');  // Para armazenar o placar editado
+    const [placar_timePrincipal, setPlacar_timePrincipal] = useState<string>('');  // Para armazenar o placar editado
+    const [placar_timeAdversario, setPlacar_timeAdversario] = useState<string>('');  // Para armazenar o placar editado
     const [nome_timeAdversario, setNome_timeAdversario] = useState<string>('');  // Para armazenar o nome do time adversário editado
     const [nome_timePrincipal, setNome_timePrincipal] = useState<string>('');  // Para armazenar o nome do time principal editado
     const [vencedor_jogo, setVencedor_jogo] = useState<string>('');  // Para armazenar o vencedor editado
@@ -19,12 +20,13 @@ const EditarDesempenhoJogos: React.FC<{ route: any, navigation: any }> = ({ rout
     useEffect(() => {
         const fetchJogo = async () => {
             try {
-                const response = await axios.get(`http://192.168.1.219:3000/jogo/tpEta/${id_jogo}`);
+                const response = await axios.get(`http://192.168.0.9:3000/jogo/tpEta/${id_jogo}`);
                 const data = response.data;
 
                 if (data) {
                     setJogo(data);
-                    setPlacar_jogo(data.placar || '');
+                    setPlacar_timePrincipal(data.placar || '');
+                    setPlacar_timeAdversario(data.placar || '');
                     setNome_timeAdversario(data.nome_time_adversario || '');
                     setNome_timePrincipal(data.nome_time_principal || '');
                     setVencedor_jogo(data.vencedor_jogo || '');
@@ -42,8 +44,9 @@ const EditarDesempenhoJogos: React.FC<{ route: any, navigation: any }> = ({ rout
 
     const salvarAlteracoes = async () => {
         try {
-            const response = await axios.patch(`http://192.168.1.219:3000/jogo/${id_jogo}`, {
-                placar_jogo,
+            const response = await axios.patch(`http://192.168.0.9:3000/jogo/${id_jogo}`, {
+                placar_timePrincipal,
+                placar_timeAdversario,
                 vencedor_jogo,  // Usando o vencedor selecionado no dropdown
             });
 
@@ -72,7 +75,6 @@ const EditarDesempenhoJogos: React.FC<{ route: any, navigation: any }> = ({ rout
         <View style={styles.container}>
             <Text style={styles.title}>Editar Jogo: {nome_timePrincipal}</Text>
 
-            {/* Informações do jogo */}
             <TouchableOpacity style={styles.buttonDados}>
                 <Text style={styles.text}>Time Principal: {nome_timePrincipal || 'Não disponível'}</Text>
             </TouchableOpacity>
@@ -82,15 +84,21 @@ const EditarDesempenhoJogos: React.FC<{ route: any, navigation: any }> = ({ rout
             </TouchableOpacity>
 
             <Text style={styles.titleEdicao}>Informe aqui o placar:</Text>
-
-            {/* Campos para editar o placar */}
+            <Text style={{color:'white', fontSize:15, marginTop:25}}>Time Principal</Text>
             <TextInput
-                style={styles.input}
+                style={styles.inputPlacar}
                 placeholder="Placar"
-                value={placar_jogo}
-                onChangeText={setPlacar_jogo}  // Atualiza o placar
+                value={placar_timePrincipal}
+                onChangeText={setPlacar_timePrincipal}  // Atualiza o placar
             />
-
+            <Text style={{color:'white', fontSize:40}}>X</Text>
+            <Text style={{color:'white', fontSize:15}}>Time Adversarios</Text>
+            <TextInput
+                style={styles.inputPlacar}
+                placeholder="Placar"
+                value={placar_timeAdversario}
+                onChangeText={setPlacar_timeAdversario}  // Atualiza o placar
+            />
             <Text style={styles.titleEdicao1}>Selecione o time vencedor:</Text>
             <TouchableOpacity style={styles.picker}>
                 <RNPickerSelect
