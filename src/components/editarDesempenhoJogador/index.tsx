@@ -17,7 +17,7 @@ const EditarDesempenhoJogador: React.FC<{ route: any, navigation: any }> = ({ ro
 
         const fetchJogador = async () => {
             try {
-                const response = await axios.get(`http://192.168.0.9:3000/jogador/${id_jogador}`);
+                const response = await axios.get(`http://192.168.142.212:3000/jogador/${id_jogador}`);
                 const data = response.data;
 
                 console.log('Dados do jogador:', data);  // Verificando os dados retornados pela API
@@ -47,7 +47,7 @@ const EditarDesempenhoJogador: React.FC<{ route: any, navigation: any }> = ({ ro
     const salvarAlteracoes = async () => {
         try {
             // Envia os dados modificados (somente gols e assistências)
-            const response = await axios.patch(`http://192.168.0.9:3000/jogador/${id_jogador}`, {
+            const response = await axios.patch(`http://192.168.142.212:3000/jogador/${id_jogador}`, {
                 gols_jogador: gols_jogador,
                 assistencias_jogador: assistencias_jogador,
             });

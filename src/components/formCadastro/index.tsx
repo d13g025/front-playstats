@@ -20,8 +20,7 @@ const FormCadastro: React.FC<{ navigation: any }> = ({ navigation }) => {
         } else {
             try {
                 // Enviar todos os dados para a API /timePrincipal para cadastro completo
-                const responseTime = await axios.post('http://192.168.0.9:3000/login', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
-                    nome_timePrincipal,
+                const responseTime = await axios.post('http://192.168.142.212:3000/login', {
                     endereco_timePrincipal,
                     email,
                     senha

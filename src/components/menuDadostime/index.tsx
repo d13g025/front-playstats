@@ -26,13 +26,6 @@ const MenuDadosTime: React.FC<{ navigation: any }> = ({ navigation }) => {
 
       <TouchableOpacity 
         style={styles.button} 
-        onPress={() => navigation.navigate('estatisticasJogadores')} 
-      >
-        <Text style={styles.itemText}>Estatisticas dos jogadores</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        style={styles.button} 
         onPress={() => navigation.navigate('estatisticasJogos')} 
       >
         <Text style={styles.itemText}>Estatisticas dos jogos</Text>

@@ -24,7 +24,7 @@ const ListaAdversarios: React.FC<{ navigation: any, route: any }> = ({ navigatio
     const fetchAdversarios = async () => {
         try {
             // Usando o id_login na URL da requisição
-            const response = await axios.get(`http://192.168.0.9:3000/timeAdversario/porLogin/${id_login}`); 
+            const response = await axios.get(`http://192.168.142.212:3000/timeAdversario/porLogin/${id_login}`); 
             setAdversarios(response.data); // Armazena os dados no estado
         } catch (err) {
             setError('Erro ao carregar os dados');
@@ -72,7 +72,7 @@ const ListaAdversarios: React.FC<{ navigation: any, route: any }> = ({ navigatio
     // Função para deletar adversário
     const handleDelete = async (id_timeAdversario: number) => {
         try {
-            const response = await axios.delete(`http://192.168.0.9:3000/timeAdversario/${id_timeAdversario}`);
+            const response = await axios.delete(`http://192.168.142.212:3000/timeAdversario/${id_timeAdversario}`);
             if (response.status === 200) {
                 Alert.alert('Sucesso', 'Time adversário excluído com sucesso!');
                 fetchAdversarios(); // Recarrega a lista de adversários após a exclusão

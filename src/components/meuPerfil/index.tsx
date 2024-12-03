@@ -29,7 +29,7 @@ const MeuPerfil: React.FC<{ navigation: any }> = ({ navigation }) => {
     // Função para carregar os dados do perfil
     const fetchPerfil = async () => {
         try {
-            const response = await axios.get(`http://192.168.0.9:3000/login/${id_login}`);
+            const response = await axios.get(`http://192.168.142.212:3000/login/${id_login}`);
             console.log('Resposta da API:', response.data);  // Verificando a resposta da API
 
             // Se a resposta for um array, pegamos o primeiro item
@@ -51,10 +51,10 @@ const MeuPerfil: React.FC<{ navigation: any }> = ({ navigation }) => {
     // Função para excluir o perfil
     const handleDelete = async () => {
         try {
-            const response = await axios.delete(`http://192.168.0.9:3000/login/${id_login}`);
+            const response = await axios.delete(`http://192.168.142.212:3000/login/${id_login}`);
             if (response.status === 200) {
                 Alert.alert('Sucesso', 'Perfil excluído com sucesso!');
-                navigation.navigate('menuOpcoes'); // Navegar para o menu após a exclusão
+                navigation.navigate('Home'); // Navegar para o menu após a exclusão
             } else {
                 Alert.alert('Erro', 'Não foi possível excluir o perfil.');
             }

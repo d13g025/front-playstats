@@ -10,7 +10,8 @@ interface Jogo {
   data_jogo: string;
   hora_jogo: string;
   vencedor_jogo: string;
-  placar_jogo: string;
+  placar_timePrincipal: string;
+  placar_timeAdversario: string;
   nome_timeAdversario: string;
   nome_timePrincipal: string;  // Agora inclui o nome do time principal
   endereco_timeAdversario: string;  // Agora inclui o endereço do time adversário
@@ -27,14 +28,14 @@ const ListaJogosUser: React.FC<{ navigation: any, route: any }> = ({ navigation,
   const fetchJogos = async () => {
     try {
       // Usando o id_login na URL da requisição
-      const response = await axios.get(`http://192.168.0.9:3000/jogo/porLogin/${id_login}`);
+      const response = await axios.get(`http://192.168.142.212:3000/porLogin/${id_login}`);
       const jogosData = response.data;
 
       // Buscar detalhes completos de cada jogo (nome_timePrincipal, nome_timeAdversario, endereco_timeAdversario)
       const jogosComDetalhes = await Promise.all(
         jogosData.map(async (jogo: Jogo) => {
           try {
-            const jogoDetalhado = await axios.get(`http://192.168.0.9:3000/jogo/tpEta/${jogo.id_jogo}`);
+            const jogoDetalhado = await axios.get(`http://192.168.142.212:3000/tpEta/${jogo.id_jogo}`);
             return {
               ...jogo,
               nome_timePrincipal: jogoDetalhado.data.nome_time_principal,
@@ -83,13 +84,12 @@ const ListaJogosUser: React.FC<{ navigation: any, route: any }> = ({ navigation,
 
   const renderItem = ({ item }: { item: Jogo }) => (
     <View style={styles.item}>
-      <Text style={styles.text}>Time Principal: {item.nome_timePrincipal || 'Não disponível'}</Text>
-      <Text style={styles.text}>Time Adversário: {item.nome_timeAdversario || 'Não disponível'}</Text>
-      <Text style={styles.text}>Endereço do Adversário: {item.endereco_timeAdversario || 'Não disponível'}</Text>
-      <Text style={styles.text}>Data jogo: {item.data_jogo || 'Não disponível'}</Text>
-      <Text style={styles.text}>Hora jogo: {item.hora_jogo || 'Não disponível'}</Text>
-      <Text style={styles.text}>Placar: {item.placar_jogo}</Text>
-      <Text style={styles.text}>Vencedor: {item.vencedor_jogo}</Text>
+       <Text style={styles.text}>Time Adversário: <Text style={styles.textDados}>{item.nome_timeAdversario || 'Não disponível'}</Text></Text>
+      <Text style={styles.text}>Endereço: <Text  style={styles.textDados}>{item.endereco_timeAdversario || 'Não disponível'}</Text></Text>
+      <Text style={styles.text}>Data: <Text style={styles.textDados}>{item.data_jogo || 'Não disponível'}</Text></Text>
+      <Text style={styles.text}>Hora: <Text style={styles.textDados}>{item.hora_jogo || 'Não disponível'}</Text></Text>
+      <Text style={styles.text}>Placar: <Text style={styles.textDados}>{item.placar_timePrincipal} X {item.placar_timeAdversario}</Text></Text>
+      <Text style={styles.text}>Vencedor: <Text style={styles.textDados}>{item.vencedor_jogo}</Text></Text>
     </View>
   );
 

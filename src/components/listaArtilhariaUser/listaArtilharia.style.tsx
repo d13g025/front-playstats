@@ -58,5 +58,12 @@ const styles = StyleSheet.create({
       iconText: {
         marginLeft: 10,  // Espaço após o ícone
       },
+      textDados: {
+        fontSize: 17,
+        color:'white',
+        marginTop:3,
+        fontWeight: 'bold',  // Adicionando negrito
+      },
+
 })
 export default styles;

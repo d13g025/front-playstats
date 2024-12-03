@@ -51,6 +51,12 @@ const styles = StyleSheet.create({
         width:28,
         textAlign:'center',
         alignSelf:'flex-end'
-    }
+    },
+    textDados: {
+        fontSize: 17,
+        color:'white',
+        marginTop:3,
+        fontWeight: 'bold',  // Adicionando negrito
+      },
 })
 export default styles;

@@ -14,11 +14,9 @@ import DadosTimeUser from 'pages/dadosTimeUser';
 import ArtilhariaUser from 'pages/artilhariaUser';
 import JogosUser from 'pages/jogosUser';
 import EstatisticaJogosUser from 'pages/estatisticaJogosUser';
-import EstatisticaJogadoresUser from 'pages/estatisticaJogadoresUser';
 import Artilharia from 'pages/artilharia';
 import Jogos from 'pages/jogos';
 import EstatisticaJogos from 'pages/estatisticaJogos';
-import EstatisticaJogadores from 'pages/estatisticaJogadores';
 import DesempenhoJogador from 'pages/desempenhoJogador';
 import Assistencias from 'pages/assistencia';
 import AssistenciasUser from 'pages/assistenciaUser';
@@ -48,12 +46,10 @@ const AppNavigator: React.FC = () => {
       <Stack.Screen name="listaAssistenciaUser" component={AssistenciasUser} options={{headerShown: false}} />
       <Stack.Screen name="listaJogosUser" component={JogosUser} options={{headerShown: false}} />
       <Stack.Screen name="estatisticasJogosUser" component={EstatisticaJogosUser} options={{headerShown: false}} />
-      <Stack.Screen name="estatisticasJogadoresUser" component={EstatisticaJogadoresUser} options={{headerShown: false}} />
       <Stack.Screen name="listaArtilharia" component={Artilharia} options={{headerShown: false}} />
       <Stack.Screen name="listaAssistencia" component={Assistencias} options={{headerShown: false}} />
       <Stack.Screen name="listaJogos" component={Jogos} options={{headerShown: false}} />
       <Stack.Screen name="estatisticasJogos" component={EstatisticaJogos} options={{headerShown: false}} />
-      <Stack.Screen name="estatisticasJogadores" component={EstatisticaJogadores} options={{headerShown: false}} />
       <Stack.Screen name="listaDesempenhoJogadores" component={DesempenhoJogador} options={{headerShown: false}} />
       <Stack.Screen name="listaDesempenhoJogos" component={DesempenhoJogos} options={{headerShown: false}} />
       <Stack.Screen name="menuCadastros" component={Cadastros} options={{headerShown: false}} />
@@ -70,3 +66,5 @@ const AppNavigator: React.FC = () => {
 };
 
 export default AppNavigator;
+
+/*Código de navegação*/

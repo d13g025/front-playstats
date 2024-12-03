@@ -23,7 +23,7 @@ const ListaArtilharia: React.FC<{ navigation: any, route: any }> = ({ navigation
     const fetchJogadores = async () => {
         try {
             // Usando o id_login na URL da requisição
-            const response = await axios.get(`http://192.168.0.9:3000/jogador/porLogin/${id_login}`);//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+            const response = await axios.get(`http://192.168.142.212:3000/jogador/porLogin/${id_login}`);//work 192.168.142.212 home:192.168.142.212 roteador:192.168.255.212
             setJogadores(response.data); // Armazena os dados no estado
         } catch (err) {
             setError('Erro ao carregar os dados');
@@ -61,9 +61,8 @@ const ListaArtilharia: React.FC<{ navigation: any, route: any }> = ({ navigation
     const renderItem = ({ item }: { item: Jogador }) => (
         <View style={styles.item}>
             <Text style={styles.text}>{item.nome_jogador} ({item.apelido_jogador})</Text>
-            <Text style={styles.text}>Posição: {item.posicao_jogador}</Text>
-            <Text style={styles.text}>Gols: {item.gols_jogador}</Text>
-            <Text style={styles.text}>Assistências: {item.assistencias_jogador}</Text>
+            <Text style={styles.text}>Posição: <Text style={styles.textDados}>{item.posicao_jogador}</Text></Text>
+            <Text style={styles.text}>Gols: <Text style={styles.textDados}>{item.gols_jogador}</Text></Text>
         </View>
     );
 

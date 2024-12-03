@@ -16,7 +16,7 @@ const PesquisarTime: React.FC<{ navigation: any }> = ({ navigation }) => {
 
         setIsLoading(true);
         try {
-            const response = await axios.get(`http://192.168.0.9:3000/buscarTime?nome=${nome}`);
+            const response = await axios.get(`http://192.168.142.212:3000/buscarTime?nome=${nome}`);
             
             if (response.data.success) {
                 setTimesEncontrados(response.data.times);  // Agora setamos `times` diretamente
@@ -24,7 +24,7 @@ const PesquisarTime: React.FC<{ navigation: any }> = ({ navigation }) => {
                 setTimesEncontrados([]);  // Caso nenhum time seja encontrado, limpa a lista
             }
         } catch (error) {
-            console.error('Erro ao buscar os times:', error);
+            console.error('O time pesquisado não existe:', error);
         } finally {
             setIsLoading(false);
         }

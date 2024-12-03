@@ -27,7 +27,7 @@ const FormJogo: React.FC<{ navigation: any, route: any }> = ({ navigation, route
         setLoading(true);
         try {
             const response = await axios.get(
-                `http://192.168.0.9:3000/buscarTimeAdversario?nome_timeAdversario=${nome_timeAdversario}&fk_login_id_login=${id_login}`
+                `http://192.168.142.212:3000/buscarTimeAdversario?nome_timeAdversario=${nome_timeAdversario}&fk_login_id_login=${id_login}`
             );
             
             // Mapeia os dados para adicionar um 'toString' em cada time
@@ -76,7 +76,7 @@ const FormJogo: React.FC<{ navigation: any, route: any }> = ({ navigation, route
             const formattedDataJogo = data_jogo.toISOString(); // Converte o objeto Date para o formato ISO
 
             // Envia os dados do jogo para a API
-            const response = await axios.post('http://192.168.0.9:3000/jogo', {
+            const response = await axios.post('http://192.168.142.212:3000/jogo', {
                 fk_timeAdversario_id_timeAdversario,  // Agora envia o id do time adversário
                 data_jogo: formattedDataJogo, // Envia a data no formato ISO
                 hora_jogo,

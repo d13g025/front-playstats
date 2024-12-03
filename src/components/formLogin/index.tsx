@@ -15,7 +15,7 @@ const FormLogin: React.FC<{ navigation: any }> = ({ navigation }) => {
         }
 
         try {
-            const response = await fetch('http://192.168.0.9:3000/autentica', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+            const response = await fetch('http://192.168.142.212:3000/login/autentica', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

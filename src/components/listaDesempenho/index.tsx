@@ -25,7 +25,7 @@ const ListaDesempenho: React.FC<{ navigation: any, route: any }> = ({ navigation
     const fetchJogadores = async () => {
         try {
             // Usando o id_login na URL da requisição
-            const response = await axios.get(`http://192.168.0.9:3000/jogador/porLogin/${id_login}`); //work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+            const response = await axios.get(`http://192.168.142.212:3000/jogador/porLogin/${id_login}`); //work 192.168.142.212 home:192.168.142.212 roteador:192.168.255.212
             setJogadores(response.data);
         } catch (err) {
             setError('Erro ao carregar os dados');
@@ -69,7 +69,7 @@ const ListaDesempenho: React.FC<{ navigation: any, route: any }> = ({ navigation
 
     const handleDelete = async (id_jogador: number) => {
         try {
-            const response = await axios.delete(`http://192.168.0.9:3000/jogador/${id_jogador}`);//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+            const response = await axios.delete(`http://192.168.142.212:3000/jogador/${id_jogador}`);//work 192.168.142.212 home:192.168.142.212 roteador:192.168.255.212
             if (response.status === 200) {
                 Alert.alert('Sucesso', 'Jogador excluído com sucesso!');
                 fetchJogadores();

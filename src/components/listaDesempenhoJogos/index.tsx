@@ -11,7 +11,8 @@ interface Jogo {
     data_jogo: string;
     hora_jogo: string;
     vencedor_jogo: string;
-    placar_jogo: string;
+    placar_timePrincipal: string;
+    placar_timeAdversario: string;
     nome_timeAdversario: string;
     nome_timePrincipal: string;  // Agora inclui o nome do time principal
     endereco_timeAdversario: string;  // Agora inclui o endereço do time adversário
@@ -26,14 +27,14 @@ const ListaDesempenhoJogos: React.FC<{ navigation: any, route: any }> = ({ navig
     // Função para buscar todos os jogos associados ao id_login
     const fetchJogos = async () => {
         try {
-            const response = await axios.get(`http://192.168.0.9:3000/jogo/porLogin/${id_login}`);
+            const response = await axios.get(`http://192.168.142.212:3000/porLogin/${id_login}`);
             const jogosData = response.data;
 
             // Buscar detalhes completos de cada jogo (nome_timePrincipal, nome_timeAdversario, endereco_timeAdversario)
             const jogosComDetalhes = await Promise.all(
                 jogosData.map(async (jogo: Jogo) => {
                     try {
-                        const jogoDetalhado = await axios.get(`http://192.168.0.9:3000/jogo/tpEta/${jogo.id_jogo}`);
+                        const jogoDetalhado = await axios.get(`http://192.168.142.212:3000/tpEta/${jogo.id_jogo}`);
                         return {
                             ...jogo,
                             nome_timePrincipal: jogoDetalhado.data.nome_time_principal,
@@ -87,7 +88,7 @@ const ListaDesempenhoJogos: React.FC<{ navigation: any, route: any }> = ({ navig
 
     const handleDelete = async (id_jogo: number) => {
         try {
-            const response = await axios.delete(`http://192.168.0.9:3000/jogo/${id_jogo}`);
+            const response = await axios.delete(`http://192.168.142.212:3000/jogo/${id_jogo}`);
             if (response.status === 200) {
                 Alert.alert('Sucesso', 'Jogo excluído com sucesso!');
                 fetchJogos();  // Recarregar a lista após a exclusão
@@ -123,7 +124,7 @@ const ListaDesempenhoJogos: React.FC<{ navigation: any, route: any }> = ({ navig
             <Text style={styles.text}>Data: {item.data_jogo}</Text>
             <Text style={styles.text}>Hora: {item.hora_jogo}</Text>
             <Text style={styles.text}>Vencedor: {item.vencedor_jogo}</Text>
-            <Text style={styles.text}>Placar: {item.placar_jogo}</Text>
+            <Text style={styles.text}>Placar: {item.placar_timePrincipal} X {item.placar_timeAdversario}</Text>
             <Text style={styles.text}>Time Principal: {item.nome_timePrincipal || 'Não disponível'}</Text>
             <Text style={styles.text}>Time Adversário: {item.nome_timeAdversario || 'Não disponível'}</Text>
             <Text style={styles.text}>Endereço Time Adversário: {item.endereco_timeAdversario || 'Não disponível'}</Text>

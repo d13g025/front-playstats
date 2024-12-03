@@ -36,9 +36,16 @@ const styles = StyleSheet.create({
         width: 380,
       },
       text: {
-        fontSize: 16,
+        fontSize: 15,
         color:'white',
-        marginTop:3
+        marginTop:3,
+        
+      },
+      textDados: {
+        fontSize: 17,
+        color:'white',
+        marginTop:3,
+        fontWeight: 'bold',  // Adicionando negrito
       }, 
       optionsButton: {
         padding: 1,

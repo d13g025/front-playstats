@@ -24,7 +24,7 @@ const ListaAssistencia: React.FC<{ navigation: any, route: any }> = ({ navigatio
     const fetchJogadores = async () => {
         try {
             // Usando o id_login para fazer a requisição
-            const response = await axios.get(`http://192.168.0.9:3000/jogador/porLogin/${id_login}`);
+            const response = await axios.get(`http://192.168.142.212:3000/jogador/porLogin/${id_login}`);
             setJogadores(response.data); // Armazena os dados no estado
         } catch (err) {
             setError('Erro ao carregar os dados');
@@ -64,9 +64,8 @@ const ListaAssistencia: React.FC<{ navigation: any, route: any }> = ({ navigatio
     const renderItem = ({ item }: { item: Jogador }) => (
         <View style={styles.item}>
             <Text style={styles.text}>{item.nome_jogador} ({item.apelido_jogador})</Text>
-            <Text style={styles.text}>Posição: {item.posicao_jogador}</Text>
-            <Text style={styles.text}>Gols: {item.gols_jogador}</Text>
-            <Text style={styles.text}>Assistências: {item.assistencias_jogador}</Text>
+            <Text style={styles.text}>Posição: <Text style={styles.textDados}>{item.posicao_jogador}</Text></Text>
+            <Text style={styles.text}>Assistências: <Text style={styles.textDados}>{item.assistencias_jogador}</Text></Text>
         </View>
     );
 

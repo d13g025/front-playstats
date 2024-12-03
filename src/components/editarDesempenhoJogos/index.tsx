@@ -20,7 +20,7 @@ const EditarDesempenhoJogos: React.FC<{ route: any, navigation: any }> = ({ rout
     useEffect(() => {
         const fetchJogo = async () => {
             try {
-                const response = await axios.get(`http://192.168.0.9:3000/jogo/tpEta/${id_jogo}`);
+                const response = await axios.get(`http://192.168.142.212:3000/tpEta/${id_jogo}`);
                 const data = response.data;
 
                 if (data) {
@@ -44,7 +44,7 @@ const EditarDesempenhoJogos: React.FC<{ route: any, navigation: any }> = ({ rout
 
     const salvarAlteracoes = async () => {
         try {
-            const response = await axios.patch(`http://192.168.0.9:3000/jogo/${id_jogo}`, {
+            const response = await axios.patch(`http://192.168.142.212:3000/jogo/${id_jogo}`, {
                 placar_timePrincipal,
                 placar_timeAdversario,
                 vencedor_jogo,  // Usando o vencedor selecionado no dropdown

@@ -18,8 +18,8 @@ const FormTimeAdversario: React.FC<{ navigation: any, route: any }> = ({ navigat
         }
 
         try {
-            // Enviando os dados para a API (supondo que a API seja 'http://192.168.1.219:3000/timeadversario')
-            const response = await axios.post('http://192.168.0.9:3000/timeadversario', {
+            // Enviando os dados para a API (supondo que a API seja 'http://192.168.142.212:3000/timeadversario')
+            const response = await axios.post('http://192.168.142.212:3000/timeadversario', {
                 nome_timeAdversario,
                 endereco_timeAdversario,
                 fk_login_id_login: id_login // Envia o id_login para o back-end

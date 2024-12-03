@@ -1,4 +1,8 @@
-// Definindo os tipos de parâmetros para o Stack Navigator
+
+/*Esse código define os tipos de parâmetros que podem ser passados entre as diferentes telas de um aplicativo que usa o React Navigation,
+mais especificamente um Stack Navigator. O objetivo é garantir que, quando você navega entre as telas, os parâmetros passados estejam
+corretos e atendam aos tipos esperados. */
+
 export type RootStackParamList = {
   Home: undefined;  // Página inicial sem parâmetros
   fazerLogin: undefined;  // Tela de login sem parâmetros
@@ -14,7 +18,6 @@ export type RootStackParamList = {
   listaAssistenciaUser: { id_login: number };
   listaJogosUser: { id_login: number };
   estatisticasJogosUser: { id_login: number };
-  estatisticasJogadoresUser: { id_login: number };
   listaArtilharia: undefined;
   listaAssistencia: undefined;
   listaJogos: undefined;
@@ -30,3 +33,9 @@ export type RootStackParamList = {
   editarDesempenhoJogador: { id_jogador: number };
   editarAdversario: {id_timeAdversario: number};
 };
+
+/*O que é o RootStackParamList?
+O tipo RootStackParamList define os parâmetros que cada tela pode ou deve receber.
+Ele é usado para garantir que, ao navegar entre as telas, os parâmetros passados estejam tipados corretamente,
+ajudando a evitar erros durante o desenvolvimento.
+*/

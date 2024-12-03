@@ -43,13 +43,6 @@ const MenuDadosTimeUser: React.FC<{ navigation: any }> = ({ navigation }) => {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('estatisticasJogadoresUser', { id_login })}
-      >
-        <Text style={styles.itemText}>Estatísticas dos jogadores</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.button}
         onPress={() => navigation.navigate('estatisticasJogosUser', { id_login })}
       >
         <Text style={styles.itemText}>Estatísticas dos jogos</Text>

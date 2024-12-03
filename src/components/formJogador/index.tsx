@@ -5,7 +5,7 @@ import { Picker } from '@react-native-picker/picker';
 import styles from './formJogador.style';
 import { useAuth } from 'components/context/AuthContext';
 
-const FormJogador: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+const FormJogador: React.FC<{ navigation: any, route: any }> = ({ navigation }) => {
     
     const { id_login } = useAuth();  
 
@@ -22,7 +22,7 @@ const FormJogador: React.FC<{ navigation: any, route: any }> = ({ navigation, ro
 
         try {
             // Enviando os dados para a API
-            const response = await axios.post('http://192.168.0.9:3000/jogador', {//work 192.168.1.219 home:192.168.0.10 roteador:192.168.255.212
+            const response = await axios.post('http://192.168.142.212:3000/jogador', {//work 192.168.142.212 home:192.168.142.212 roteador:192.168.255.212
                 nome_jogador,
                 apelido_jogador,
                 posicao_jogador,

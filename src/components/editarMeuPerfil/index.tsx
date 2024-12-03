@@ -23,7 +23,7 @@ const EditarMeuPerfil: React.FC<{ route: any, navigation: any }> = ({ route, nav
 
         const fetchPerfil = async () => {
             try {
-                const response = await axios.get(`http://192.168.0.9:3000/login/${id_login}`);
+                const response = await axios.get(`http://192.168.142.212:3000/login/${id_login}`);
                 const data = response.data;
 
                 console.log('Dados do perfil:', data);  // Verificando os dados retornados pela API
@@ -51,7 +51,7 @@ const EditarMeuPerfil: React.FC<{ route: any, navigation: any }> = ({ route, nav
     // Função para salvar as alterações
     const salvarAlteracoes = async () => {
         try {
-            const response = await axios.patch(`http://192.168.0.9:3000/login/${id_login}`, {
+            const response = await axios.patch(`http://192.168.142.212:3000/login/${id_login}`, {
                 nome_timePrincipal: nome_timePrincipal,
                 endereco_timePrincipal: endereco_timePrincipal,
                 email: email,
