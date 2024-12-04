@@ -25,6 +25,8 @@ Este projeto contém códigos de Frontend de um aplicativo que organiza e retorn
 
 # **PlayStats**
 
+## Documentação do Usuáruio
+
 ### **Descrição do Projeto**
 O objetivo do projeto **PlayStats** é criar um aplicativo móvel que facilite o registro, a gestão e a visualização das estatísticas dos jogos de futebol amadores.  
 A aplicação busca melhorar a precisão e a organização das informações, proporcionando uma plataforma dedicada para o acompanhamento do desempenho dos jogadores e o histórico dos jogos.
@@ -70,39 +72,121 @@ A aplicação busca melhorar a precisão e a organização das informações, pr
 
 ---
 
-### **Funcionalidades Principais**
+# **Dentro do aplicativo no  Expoo Go**
 
-1. **Cadastro de Jogadores**  
-   - **Descrição**: Permite o cadastro de cada jogador com informações básicas, como nome, posição e número da camisa.  
-   - **Benefício**: Facilita a identificação e a gestão das estatísticas individuais.
 
-2. **Registro de Jogos**  
-   - **Descrição**: Cria eventos de jogos, incluindo data, adversário e detalhes relevantes.  
-   - **Benefício**: Mantém um registro organizado dos jogos e permite a inserção das estatísticas de forma sistemática.
+## Funcionalidades Principais
+O PlayStats oferece as seguintes funcionalidades:
 
-3. **Estatísticas de Jogos**  
-   - **Descrição**: Registra estatísticas individuais por jogo, como gols, assistências e cartões.  
-   - **Benefício**: Proporciona um método preciso para atualizar e consultar as estatísticas.
+1. **Cadastro e Login**
+   - Ao abrir o aplicativo, clique em **"Cadastrar Time"**.
+   - Preencha as informações solicitadas, como:
+       - Nome do seu time.
+       - Endereço do seu time.
+       - E-mail.
+       - Senha.
+   - Clique em **"Salvar"** para salvar, após isso será redirecionado a tela inicial.
+   - Clique em **"Realizar Login"**.
+   - Use seu e-mail e senha para fazer login.
 
-4. **Histórico de Jogos**  
-   - **Descrição**: Armazena e exibe o histórico completo dos jogos e das estatísticas associadas.  
-   - **Benefício**: Facilita a análise do desempenho ao longo do tempo e a consulta a dados históricos.
+    ![image](https://github.com/user-attachments/assets/df42e032-449e-404f-a3aa-4979b3efa6c0)
 
-5. **Relatórios Anuais**  
-   - **Descrição**: Gera relatórios detalhados com estatísticas anuais, incluindo totais de gols e assistências de cada jogador.  
-   - **Benefício**: Oferece uma visão abrangente do desempenho do time e dos jogadores durante o ano.
 
-6. **Notificações e Atualizações**  
-   - **Descrição**: Envia notificações sobre próximos jogos e atualizações de estatísticas.  
-   - **Benefício**: Mantém os jogadores e a equipe informados e engajados.
+2. **Cadastro de Jogadores**:
+    - Permite adicionar jogadores, incluindo nome, apelido e posição.
+    - Exemplo:
+      - Home, vá em "cadastros" => "cadastrar jogador".
+      - Preencha as informações e salve.
+        
+    ![image](https://github.com/user-attachments/assets/81ae56bb-3477-49eb-85f2-34130294960d)
 
-7. **Interface Amigável**  
-   - **Descrição**: Design simples e intuitivo para garantir que qualquer membro do time possa usar o aplicativo facilmente.  
-   - **Benefício**: Facilita a adoção e o uso contínuo por todos os membros do time.
+
+3. **Cadastro de Time Adversário**:
+    - Permite adicionar times adversários, incluindo nome, e endereço.
+    - Exemplo:
+      - Home, vá em "cadastros" => "cadastrar time adversário".
+      - Preencha as informações e salve.
+     
+    ![image](https://github.com/user-attachments/assets/ec69bd74-01e4-4ff1-802b-184150438527)
+
+
+4. **Cadastro de jogo**:
+    - Crie e gerencie jogos com informações com dados do adversário.
+    - Exemplo:
+      - Home, vá em "cadastros" => "cadastrar jogo".
+      - Preencha as informações e salve.
+
+    ![image](https://github.com/user-attachments/assets/62448f7a-64aa-4149-a6e6-8bfe70d4371a)
+
+5. **Atualizar Desempenhos**:
+    - Modulo responsável pelas atualizações dos dados cadastrados anteriomentes: atualizar desempenho dos jogadores, dos jogos e dados do time adversário.
+    - Exemplo:
+      - Home, vá em "Atualizar Desempenho" => selecione qual dado a ser atualizado (jogo, jogador, time adversário).
+      - Preencha as informações e salve.
+
+    ![image](https://github.com/user-attachments/assets/fd8a3b44-fbd1-4f47-ac67-9c23b8ed79f7)
+
+6. **Atualizar Perfil**:
+    - Modulo responsável pelas atualizações dos dados cadastrados inicialmente para realizar login.
+    - Exemplo:
+      - Home, vá em "Meu Pergil" => selecione qual opção deseja: "editar perfil" ou "excluir perfil".
+          - Se "editar perfil", na nova aba a ser direcionado, edite as informações e salve.
+          - Se "excluir perfil", confirme no Alerta que irá abrir, e seu perfil será excluido e você direcionado a home.
+
+    ![image](https://github.com/user-attachments/assets/4bb32d2c-9a0e-4e71-a0bf-bb24eadac32c)
+
+7. **Home - Visualizar Dados do Time**:  
+   - Permite ao usuário acessar informações gerais do time, como estatísticas e desempenho.  
+   - Exemplo:  
+     - Acesse a aba **"Home"**.  
+     - Visualize o resumo dos dados gerais do time, incluindo estatísticas principais.  
+     - Escolha uma das opções no menu para detalhes específicos:  
+
+       **Opções Disponíveis:**  
+       - **Lista de Artilharia e Assistências**:  
+         - Visualize a tabela com os jogadores que mais marcaram gols e deram assistências.  
+         - Exemplo:  
+           - Clique em **"Artilharia e Assistências"**.  
+           - Veja os jogadores classificados por desempenho.  
+
+       - **Lista de Jogos**:  
+         - Exibe o histórico de jogos realizados pelo time.  
+         - Exemplo:  
+           - Clique em **"Lista de Jogos"**.  
+           - Navegue pelos jogos com informações como adversário, data e resultado.  
+
+       - **Estatísticas dos Jogos**:  
+         - Detalha as estatísticas de jogos específicos, incluindo posse de bola, finalizações e cartões.  
+         - Exemplo:  
+           - Clique em **"Estatísticas dos Jogos"**.  
+           - Escolha o jogo desejado para ver os detalhes.
+             
+    ![image](https://github.com/user-attachments/assets/a7f59f76-d6fe-443f-8b12-7a9aa4d40180)
+
+
+8. **Visualizar Times sem Login**:  
+   - Permite ao usuário visualizar informações de times cadastrados sem precisar realizar login.  
+   - Exemplo:  
+     - Na tela inicial, antes de realizar o login, localize o campo **"Pesquisar"**.  
+     - Digite o nome de um time no campo de busca.  
+     - Clique em **"Pesquisar"** para visualizar os resultados.  
+     - A lista exibirá os times correspondentes ao termo pesquisado, com informações básicas como nome e endereço.  
+
+    ![image](https://github.com/user-attachments/assets/55725595-830d-4154-9f23-f6befdf139d0)
 
 ---
 
-### **Tecnologias Utilizadas**
+# **UML**
+
+![image](https://github.com/user-attachments/assets/6f290a57-2e72-4b22-8e00-f16e2bb8e50b)
+
+---
+
+
+
+---
+
+# **Tecnologias Utilizadas**
 
 - **Frontend**: React Native com Expo.
 - **Backend**: Node.js com Express.
@@ -114,7 +198,7 @@ A aplicação busca melhorar a precisão e a organização das informações, pr
 
 ---
 
-### **Como Contribuir**
+# **Como Contribuir**
 
 1. Faça um fork deste repositório.
 2. Crie um branch para suas alterações:  
@@ -133,14 +217,10 @@ A aplicação busca melhorar a precisão e a organização das informações, pr
 
 ---
 
-### **Licença**
+# **Licença**
 
 Este projeto está sob a licença [MIT](LICENSE).  
 
----
 
-### **UML**
-
-![image](https://github.com/user-attachments/assets/6f290a57-2e72-4b22-8e00-f16e2bb8e50b)
 
   
