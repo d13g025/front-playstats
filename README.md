@@ -138,4 +138,9 @@ A aplicação busca melhorar a precisão e a organização das informações, pr
 Este projeto está sob a licença [MIT](LICENSE).  
 
 ---
+
+### **UML**
+
+![image](https://github.com/user-attachments/assets/6f290a57-2e72-4b22-8e00-f16e2bb8e50b)
+
   
