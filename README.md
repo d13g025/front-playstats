@@ -182,7 +182,18 @@ O PlayStats oferece as seguintes funcionalidades:
 
 ---
 
+# **MER**
 
+![image](![Imagem do WhatsApp de 2024-12-04 à(s) 17 44 08_79bd47d4](https://github.com/user-attachments/assets/843d8092-0c91-4d4b-8b81-b40542451277)
+)
+
+---
+
+# **DER**
+
+![image](![Imagem do WhatsApp de 2024-12-04 à(s) 17 32 49_c32a0f0c](https://github.com/user-attachments/assets/bf60b64e-e1d9-47f1-a1cf-9342aa2611d9)
+)
+)
 
 ---
 
